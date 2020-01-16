@@ -1,3 +1,4 @@
+package src.main.java;
 
 /**
  * Write a description of class Food here.
@@ -9,7 +10,7 @@
 public class Meals {
 
     private int key;
-    
+
     private String type;
     private String name;
 
@@ -22,14 +23,14 @@ public class Meals {
     private double sugar;
     private double fibre;
     private double salt;
-    
+
     private double b1;
     private double b2;
     private double b3;
     private double b6;
     private double b9;
     private double b12;
-    
+
     private double d;
     private double iron;
 
@@ -53,18 +54,18 @@ public class Meals {
         this.b12 = b12;
         this.d = d;
         this.iron = iron;
-        
+
 
     }
 
     public int getKey() {
         return key;
     }
-    
+
     public String getType() {
         return type;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -80,7 +81,7 @@ public class Meals {
     public double getProtein() {
         return protein;
     }
-    
+
     public double getFat() {
         return fat;
     }
@@ -124,11 +125,11 @@ public class Meals {
     public double getB12() {
         return b12;
     }
-    
+
     public double getD() {
         return d;
     }
-    
+
     public double getIron() {
         return iron;
     }
@@ -155,4 +156,3 @@ public class Meals {
                 '}';
     }
 }
-
