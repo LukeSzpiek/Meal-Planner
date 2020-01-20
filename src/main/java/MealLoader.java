@@ -79,7 +79,7 @@ public class MealLoader {
                  System.out.println("No name");
                 }
 
-             ArrayList<String> doubleList = new ArrayList();
+             ArrayList<String> doubleList = new ArrayList<String>();
 
              doubleList.add(calorieTextField.getCharacters().toString());
              doubleList.add(carbsTextField.getCharacters().toString());

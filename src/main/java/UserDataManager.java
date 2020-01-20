@@ -12,17 +12,17 @@ import java.io.*;
 public abstract class UserDataManager
 {
     // Initially loads in the user's borough use and search uses.
-    private static HashMap userStats = UserDataManager.loadUserStats();
+    private static HashMap<String,Integer> userStats = UserDataManager.loadUserStats();
     private static int userActions = 0;
 
     /**
      * Loads user stats from a specified file.
      * @param The name of a text file that is to be loaded from.
      */
-    public static HashMap loadUserStats(){
+    public static HashMap<String,Integer> loadUserStats(){
 
         String current = "";
-        HashMap userUseage = new HashMap();
+        HashMap<String,Integer> userUseage = new HashMap<>();
         boolean first = true;
         //System.out.println("Attempting to load");
 
@@ -66,7 +66,7 @@ public abstract class UserDataManager
     /**
      * @return Returns a hash map of the stats that the programmer requests.
      */
-    public static HashMap getUserStats(){
+    public static HashMap<String,Integer> getUserStats(){
         return userStats;
     }
 
@@ -119,7 +119,7 @@ public abstract class UserDataManager
 
         File newFile = new File("userStats.txt");
 
-        HashMap userStats = freshStats(); // Try to generate fresh stats.
+        HashMap<String,Integer> userStats = freshStats(); // Try to generate fresh stats.
 
         Object nextPair = 0;
         Iterator keyIterator = userStats.keySet().iterator();
@@ -155,9 +155,9 @@ public abstract class UserDataManager
      * Contains the values for fresh statistics of certain files.
      * @returns Returns a HashMap of new stat pairs.
      */
-    public static HashMap freshStats(){
+    public static HashMap<String,Integer> freshStats(){
 
-        HashMap defaultStats = new HashMap();
+        HashMap<String,Integer> defaultStats = new HashMap<>();
 
         defaultStats.put("Weight",0);
         defaultStats.put("Height",0);

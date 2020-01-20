@@ -78,7 +78,7 @@ public class Profile
         ageHBox.setSpacing(10);
 
         Label sexLabel = new Label("Sex:");
-        ComboBox cb = new ComboBox();
+        ComboBox<String> cb = new ComboBox<>();
         cb.getItems().addAll("Male","Female");
 
         if (s==0){
