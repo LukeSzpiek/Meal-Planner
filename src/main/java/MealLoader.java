@@ -16,6 +16,8 @@ import java.util.*;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import java.io.FileReader;
+import java.io.InputStream;
 
 
 public class MealLoader {
@@ -29,8 +31,11 @@ public class MealLoader {
     public static ArrayList<Meals> load(String fileName) {
         ArrayList<Meals> listings = new ArrayList<Meals>();
         try{
-            URL url = MealLoader.class.getResource("/"+fileName);
+
+            URL url = MealLoader.class.getResource("/raw/"+fileName);
             CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
+
+            //new FileReader(new File(url.toURI()).getAbsolutePath()));
             String [] line;
             //skip the first row (column headers)
             reader.readNext();

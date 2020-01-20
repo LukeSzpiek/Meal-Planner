@@ -57,7 +57,7 @@
 
             public MainScreen() {
 
-                PlateHandler.loadMealLists(); //The problem.
+                //PlateHandler.loadMealLists(); //The problem.
 
             }
 
