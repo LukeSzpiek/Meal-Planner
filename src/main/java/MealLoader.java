@@ -56,14 +56,14 @@ public class MealLoader {
                 double iron = convertDouble(line[18]);
 
                 Meals listing = new Meals(key, type, name, calories, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron);
-                System.out.println("Created meal");
+                //System.out.println("Created meal");
                 listings.add(listing);
             }
         } catch(IOException | URISyntaxException e){
             System.out.println("Failure! Something went wrong");
             e.printStackTrace();
         }
-        System.out.println("Success! Number of loaded records: " + listings.size());
+        //System.out.println("Success! Number of loaded records: " + listings.size());
         return listings;
     }
 

@@ -24,7 +24,7 @@ public abstract class UserDataManager
         String current = "";
         HashMap userUseage = new HashMap();
         boolean first = true;
-        System.out.println("Attempting to load");
+        //System.out.println("Attempting to load");
 
         try(Scanner reader = new Scanner(new File("userStats.txt"))){ // It scans the file, and if it has something next, then collects the string and adds it to current.
          while (reader.hasNext()) {

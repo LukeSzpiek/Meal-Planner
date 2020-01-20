@@ -1,5 +1,6 @@
         package src.main.java;
 
+
         import javafx.scene.input.MouseEvent;
         import javafx.scene.control.TableRow;
         import javafx.collections.FXCollections;
@@ -34,12 +35,21 @@
         import java.lang.Object.*;
         import javafx.scene.layout.*;
         import java.lang.Math.*;
+        import javafx.fxml.FXMLLoader;
+        import javax.imageio.ImageIO;
+        import java.awt.image.BufferedImage;
+        import java.net.URL;
+
+        import javafx.stage.Screen;
+        import javafx.geometry.Rectangle2D;
 
         public class MainScreen extends Application
         {
-            public int widthOfWindow = 300;
-            public double doubleWidthOfWindow = 285.0;;
-            public int heightOfWindow = 500;
+
+            Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+            public double widthOfWindow = visualBounds.getWidth();
+            public double doubleWidthOfWindow = visualBounds.getWidth();
+            public double heightOfWindow = visualBounds.getHeight();
 
             BorderPane mainPane = new BorderPane();
             Scene scene = new Scene((Parent)mainPane, (double)widthOfWindow, (double)heightOfWindow);
@@ -47,16 +57,18 @@
 
             public MainScreen() {
 
-                PlateHandler.loadMealLists();
+                //PlateHandler.loadMealLists();
 
             }
 
+            @Override
             public void start(Stage stage) {
-
+                //System.out.println("ready to go");
                 startAnimation();
                 stage.setTitle("Luke's Meal Planner");
                 stage.setScene(scene);
-                (st = stage).show();
+                st = stage;
+                st.show();
 
             }
 
@@ -73,7 +85,10 @@
                 fade.setToValue(10);
 
                 try{
-                Image image = new Image(new FileInputStream("havslogosmall.jpg"));
+
+                URL url = getClass().getResource("/sprites/havslogosmall.jpg");
+                Image image = new Image(url.toExternalForm());
+
                 ImageView imageView = new ImageView(image);
 
                 fade.setNode(imageView);
@@ -96,24 +111,34 @@
             }
 
 
-            private void profileClick( ActionEvent event) {
+            private void profileClick(ActionEvent event) {
+
                 clearScreen();
 
                 Profile prof = new Profile();
+                ProfileController profController = new ProfileController(prof);
 
-                prof.start(scene, mainPane, this);
+                try{
+                mainPane.setCenter(profController.getLoader().load());
+              }
+                catch(Exception e){
+                  System.out.println(e);
+                }
+
             }
+
 
             public void drawMainMenu() {
                 clearScreen();
 
                 int numberOfButtons = 4;
 
-                Image image;
                 Label name = new Label("Luke's\nMeal\nPlanner.");
 
                 try{
-                image = new Image(new FileInputStream("MealPlannerLogo.png"));
+
+                URL url = getClass().getResource("/sprites/MealPlannerLogo.png");
+                Image image = new Image(url.toExternalForm());
                 ImageView imageView = new ImageView(image);
                 mainPane.setMargin(imageView,new Insets(25));
 
@@ -179,8 +204,8 @@
                 mainPane.setBottom(exit);
 
                 profile.setOnAction(this::profileClick);
-                foods.setOnAction(ev -> foodsClick(false));
-                today.setOnAction(ev -> plateMenu());
+                //foods.setOnAction(ev -> foodsClick(false));
+              //today.setOnAction(ev -> plateMenu());
                 exit.setOnAction(this::exitClick);
             }
 
@@ -189,6 +214,7 @@
              * The menu that pops up when you click the 'foods' menu, or when you try to add an item to your plate.
              * The 'select' variable determines if the user has entered from the plate menu, and are 'selecting' a item to add to their plate.
              */
+             /*
             private void foodsClick(boolean select) {
                 clearScreen();
 
@@ -291,6 +317,7 @@
              * Foods > Breakfast
              * The menu that appears when you click into a category from the 'foods' menu.
              */
+             /*
             private void typeClick( String type,  boolean select) {
 
                 Label typeLabel = new Label(type);
@@ -382,6 +409,7 @@
              * PLATE > ADD > BREAKFAST > ADD TO PLATE
              * The menu that appears when you try to add an item to your plate.
              */
+             /*
             public void QuantityMenu(Meals data) {
                 clearScreen();
 
@@ -420,6 +448,7 @@
             /**
              * Creates a new meal item that has had its nutritional quantities adjusted.
              */
+             /*
             public void AdjustDataQuantity(Meals meals,  double quantity) {
                 System.out.println(quantity);
                 if (quantity != 1.0 || quantity != 1 || quantity != 1.00) {
@@ -431,6 +460,7 @@
             /**
              * Adds a new meal, that has perhaps had its quantity adjusted, to the 'plate.csv' file, which holds all of the meals currently on the user's plate, and adds it to the current meal list.
              */
+             /*
             private void AddMealToMealList(Meals meal) {
                 PlateHandler.addCurrentMeals(meal);
 
@@ -461,6 +491,7 @@
             /**
              * Creates a generic, empty, table that is used by all of the meals in the application.
              */
+             /*
             public TableView<Meals> getTable() {
                 TableView<Meals> table = (TableView<Meals>)new TableView();
 
@@ -506,6 +537,7 @@
              * The menu that appears when you are adding a new item to your dictionary.
              *
              */
+             /*
             public void addClick(String type,  boolean select) {
                 clearScreen();
 
@@ -725,6 +757,7 @@
     * The menu that appears when you click the 'plate' button in the main menu.
     *
     */
+    /*
     private void plateMenu() {
         clearScreen();
 
@@ -859,6 +892,8 @@
         mainPane.setBottom(back);
     }
 
+    */
+
     private void exitClick( ActionEvent event) {
         st.close();
     }
@@ -869,11 +904,4 @@
         mainPane.setBottom(null);
     }
 
-    /**
-    * Launches the program using some given command line arguments
-    * @param args Some command line arguments
-    */
-   public static void main(String[] args) {
-     launch(args);
-   }
 }
