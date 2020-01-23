@@ -26,7 +26,12 @@ public abstract class UserDataManager
         boolean first = true;
         //System.out.println("Attempting to load");
 
-        try(Scanner reader = new Scanner(new File("userStats.txt"))){ // It scans the file, and if it has something next, then collects the string and adds it to current.
+        //File url = UserDataManager.class.getResource("/stats/userStats.txt").getFile();
+
+        File file = new File(UserDataManager.class.getClassLoader().getResource("stats/userStats.txt").getFile());
+
+
+        try(Scanner reader = new Scanner(file)){ // It scans the file, and if it has something next, then collects the string and adds it to current.
          while (reader.hasNext()) {
          if(first){
              current += reader.next();

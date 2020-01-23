@@ -3,7 +3,7 @@
 <?import com.gluonhq.charm.glisten.mvc.View?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -62,7 +62,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="ageLabel" GridPane.columnIndex="1" />
-                        <ChoiceBox fx:id="sexComboBox" accessibleRole="CHECK_BOX" prefHeight="28.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="sexComboBox" accessibleRole="CHECK_BOX" prefHeight="28.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="heightLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="weightLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>

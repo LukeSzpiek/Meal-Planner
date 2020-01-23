@@ -69,6 +69,8 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-all:1.3'
 	  compile "com.opencsv:opencsv:4.0"
     compile 'com.gluonhq:charm:5.0.0'
+    compile group: 'org.jfxtras', name: 'jmetro', version: '8.6.5'
+
 }
 
 allprojects {

@@ -1,6 +1,5 @@
         package src.main.java;
 
-
         import javafx.scene.input.MouseEvent;
         import javafx.scene.control.TableRow;
         import javafx.collections.FXCollections;
@@ -43,6 +42,7 @@
         import javafx.stage.Screen;
         import javafx.geometry.Rectangle2D;
 
+
         public class MainScreen extends Application
         {
 
@@ -54,6 +54,8 @@
             BorderPane mainPane = new BorderPane();
             Scene scene = new Scene((Parent)mainPane, (double)widthOfWindow, (double)heightOfWindow);
             Stage st;
+
+            //JMetro jm = new JMetro(JMetro.Style.LIGHT).applyTheme(mainPane);
 
             public MainScreen() {
 
