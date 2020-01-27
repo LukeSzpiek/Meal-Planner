@@ -20,8 +20,6 @@ import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.scene.shape.*;
 
-//import com.gluonhq.charm.glisten.control.*;
-//import com.gluonhq.charm.glisten.control.Icon;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -69,15 +67,15 @@ public class MainMenu extends Application
    private Parent root;
    public static Scene mainScene;
 
-   private static Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-   public static double widthOfWindow = visualBounds.getWidth();
-   public static double heightOfWindow = visualBounds.getHeight();
-   public static Style STYLE = Style.LIGHT;
+   private Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+   public double widthOfWindow = visualBounds.getWidth();
+   public double heightOfWindow = visualBounds.getHeight();
+   public Style STYLE = Style.LIGHT;
 
    private FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/main.fxml"));
 
    @Override
-       public void start(Stage stage) throws IOException {
+   public void start(Stage stage) throws IOException {
           this.stage = stage;
 
           loader.setController(this);
@@ -90,41 +88,31 @@ public class MainMenu extends Application
        }
 
 
-    @FXML
-    void initialize() {}
+   @FXML
+   void initialize() {}
 
-    public FXMLLoader getLoader() {
+   public FXMLLoader getLoader() {
           return loader;
         }
 
-    public void profileClick(ActionEvent event) throws IOException {
-      System.out.println("Test");
+   public void profileClick(ActionEvent event) throws IOException {
       Profile prof = new Profile();
       ProfileController profController = new ProfileController(prof);
-
-      //Parent p = profController.getLoader().load();
-      //sharedClickMethod(p, event);
     }
 
-    //public void sharedClickMethod(Parent p, ActionEvent event){
-      //Scene newScene = new Scene(p, widthOfWindow, heightOfWindow);
-      //JMetro jm = new JMetro(newScene, STYLE);
+   public void exitClick(ActionEvent event) throws IOException {
+     stage.close();
+     }
 
-      //Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+   public void loadMenu(){
+      try{
+      loader.setController(this);
+      MainMenu.mainScene.setRoot((Parent) loader.load());
+    }
+    catch(Exception e){
+      System.out.println(e);
+    }
 
-      //newStage.setScene(newScene);
-      //newStage.show();
-  //  }
-
-  public void loadMenu(){
-    try{
-    loader.setController(this);
-    MainMenu.mainScene.setRoot((Parent) loader.load());
-  }
-  catch(Exception e){
-    System.out.println(e);
-  }
-
-  }
+    }
 
 }

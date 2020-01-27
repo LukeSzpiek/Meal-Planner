@@ -1,5 +1,0 @@
-Sex 0 
-Height 0 
-Weight 0 
-Age 0 
-Calories 0 

@@ -2,6 +2,9 @@ package src.main.java;
 
 import java.util.*;
 import java.io.*;
+import com.opencsv.CSVReader;
+import java.net.URL;
+
 /**
  * Contains methods to load in and write to text files.
  * Enables the application to save user use of the applicaiton.
@@ -27,28 +30,21 @@ public abstract class UserDataManager
         //System.out.println("Attempting to load");
 
         //File url = UserDataManager.class.getResource("/stats/userStats.txt").getFile();
+        URL url = MealLoader.class.getResource("/raw/userStats.csv");
 
-        File file = new File(UserDataManager.class.getClassLoader().getResource("stats/userStats.txt").getFile());
+        try{
+        CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
 
+        String [] line;
 
-        try(Scanner reader = new Scanner(file)){ // It scans the file, and if it has something next, then collects the string and adds it to current.
-         while (reader.hasNext()) {
-         if(first){
-             current += reader.next();
-            }
-            else{
-               current += " "+reader.next();
-            }
-
-         first = false;
-
-         if (reader.hasNextInt()) { // If the next item is an int, then it puts current and the next int into a hashmap. The current stored the whole name of what the number was associated with.
-            userUseage.put(current,reader.nextInt());
-            current = "";
-            first = true;
-         }
-
-        }
+        reader.readNext();
+        while ((line = reader.readNext()) != null) {
+            userUseage.put("Sex", Integer.parseInt(line[0]));
+            userUseage.put("Height", Integer.parseInt(line[1]));
+            userUseage.put("Weight", Integer.parseInt(line[2]));
+            userUseage.put("Age", Integer.parseInt(line[3]));
+            userUseage.put("Calories", Integer.parseInt(line[4]));
+          }
         }
 
         catch(Exception e){ // If there is an error, then it generates fresh stats of the target file and loads them in again.

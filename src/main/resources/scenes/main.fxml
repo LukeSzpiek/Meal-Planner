@@ -51,7 +51,7 @@
                         <Font size="28.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #c93232;" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #c93232;" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="28.0" />
                      </font>
