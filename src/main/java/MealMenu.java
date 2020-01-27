@@ -46,35 +46,36 @@ import javafx.scene.layout.BorderPane;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class FoodsMenu
+public class MealMenu
 {
 
-  @FXML
-  private BorderPane root;
+   @FXML
+   private BorderPane root;
 
-  @FXML
-  private Button backButton;
+   @FXML
+   private Button backButton;
 
-  @FXML
-  private Button breakfastButton;
+   @FXML
+   private TableView<?> tableView;
 
-  @FXML
-  private Button lunchButton;
+   @FXML
+   private Button addNewItemButton;
 
-  @FXML
-  private Button dinnerButton;
+   @FXML
+   private Button deleteItemButton;
 
-  @FXML
-  private Button snacksButton;
+   @FXML
+   private Button addItemToPlateButton;
 
-  @FXML
-  private Button boostersButton;
+  private String type;
 
 
-public FoodsMenu(){
+public MealMenu(String type){
+
+  this.type = type;
 
   try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/mealTypeMenu.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/mealMenu.fxml"));
       loader.setController(this);
       MainMenu.mainScene.setRoot((Parent) loader.load());
     }
@@ -82,13 +83,7 @@ public FoodsMenu(){
       System.out.println(e);
     }
 
-
   }
-
-public void buttonEventHandler(ActionEvent event){
-  Button button = (Button)event.getSource();
-  MealMenu mealMenu = new MealMenu(button.getText());
-}
 
 @FXML
 void initialize() {
@@ -96,10 +91,8 @@ void initialize() {
   }
 
 public void goBack(ActionEvent event){
-  MainMenu menu = new MainMenu();
-  menu.loadMenu();
+  FoodsMenu menu = new FoodsMenu();
+  //menu.loadMenu();
 }
-
-
 
 }

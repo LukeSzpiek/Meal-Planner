@@ -24,27 +24,27 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="breakfastButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Breakfast">
+                  <Button fx:id="breakfastButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonEventHandler" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Breakfast">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="lunchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Lunch">
+                  <Button fx:id="lunchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonEventHandler" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Lunch">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="dinnerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Dinner">
+                  <Button fx:id="dinnerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonEventHandler" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Dinner">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="snacksButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Snacks">
+                  <Button fx:id="snacksButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonEventHandler" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Snacks">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boostersButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Boosters">
+                  <Button fx:id="boostersButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonEventHandler" prefHeight="51.0" prefWidth="242.0" style="-fx-background-color: #94afc0;" text="Boosters">
                      <font>
                         <Font size="36.0" />
                      </font>
