@@ -100,6 +100,10 @@ public class MainMenu extends Application
       ProfileController profController = new ProfileController(prof);
     }
 
+    public void foodsClick(ActionEvent event) throws IOException {
+       FoodsMenu foodsMenu = new FoodsMenu();
+     }
+
    public void exitClick(ActionEvent event) throws IOException {
      stage.close();
      }
