@@ -13,89 +13,94 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1">
+
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <Label alignment="CENTER" prefHeight="136.0" prefWidth="268.0" text="Profile" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Malgun Gothic" size="60.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-         </top>
+      <View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0">
          <center>
-            <VBox alignment="CENTER" prefHeight="384.0" prefWidth="335.0" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane alignment="CENTER" prefHeight="238.0" prefWidth="335.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="137.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="158.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Age">
-                           <font>
-                              <Font name="Malgun Gothic" size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Height" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Malgun Gothic" size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Weight" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Malgun Gothic" size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Sex" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Malgun Gothic" size="25.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="ageLabel" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="sexComboBox" accessibleRole="CHECK_BOX" prefHeight="28.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="heightLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="weightLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
-                     </padding>
-                  </GridPane>
-                  <Button fx:id="calculateCaloriesButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="240.0" text="Calculate Calories">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <Label alignment="CENTER" prefHeight="136.0" prefWidth="268.0" text="Profile" textAlignment="CENTER" BorderPane.alignment="CENTER">
                      <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="caloriesLabel" alignment="CENTER" prefHeight="182.0" prefWidth="335.0" text="1000 Calories">
-                     <font>
-                        <Font name="Malgun Gothic Semilight" size="39.0" />
+                        <Font name="Malgun Gothic" size="60.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Label>
-               </children>
-            </VBox>
+               </top>
+               <center>
+                  <VBox alignment="CENTER" prefHeight="384.0" prefWidth="335.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <GridPane alignment="CENTER" prefHeight="238.0" prefWidth="335.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="137.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="158.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Age">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Height" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="159.0" text="Weight" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="137.0" text="Sex" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ageLabel" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="sexComboBox" accessibleRole="CHECK_BOX" prefHeight="28.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="heightLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="weightLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
+                           </padding>
+                        </GridPane>
+                        <Button fx:id="calculateCaloriesButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="240.0" text="Calculate Calories">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="caloriesLabel" alignment="CENTER" prefHeight="182.0" prefWidth="335.0" text="1000 Calories">
+                           <font>
+                              <Font name="Malgun Gothic Semilight" size="39.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
          </center>
-      </BorderPane>
+         <bottom>
+            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="335.0" text="Back" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+         </bottom>
+      </View>
    </center>
-   <bottom>
-      <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="335.0" text="Back" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Button>
-   </bottom>
-</View>
+</BorderPane>

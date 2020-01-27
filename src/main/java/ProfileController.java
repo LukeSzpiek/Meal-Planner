@@ -30,6 +30,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
+import javafx.scene.Node;
 
 /**
  * Write a description of JavaFX class Profile here.
@@ -63,13 +68,21 @@ private Button backButton;
 
 
 private Profile profile;
-private FXMLLoader loader;
+
 
 public ProfileController(Profile prof){
   profile = prof;
 
-  loader = new FXMLLoader(getClass().getResource("/scenes/profile.fxml"));
-  loader.setController(this);
+  try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/profile.fxml"));
+      loader.setController(this);
+      MainMenu.mainScene.setRoot((Parent) loader.load());
+    }
+    catch(Exception e){
+      System.out.println(e);
+    }
+
+
   }
 
 @FXML
@@ -91,17 +104,24 @@ void initialize() {
       sexComboBox.setPromptText("-");
   }
 
-  calculateCaloriesButton.setOnAction(event -> {calculateCalories();});
+
+  //calculateCaloriesButton.setOnAction(event -> {calculateCalories();});
+  backButton.setOnAction(event -> {goBack(event);});
 
   }
+
+public void goBack(ActionEvent event){
+  MainMenu menu = new MainMenu();
+  menu.loadMenu();
+}
 
 public Profile getProfile() {
       return profile;
     }
 
-public FXMLLoader getLoader() {
-      return loader;
-    }
+//public FXMLLoader getLoader() {
+  //    return loader;
+  //  }
 
 private double calculateCalories(){
 

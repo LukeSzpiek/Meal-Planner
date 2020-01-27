@@ -1,4 +1,5 @@
         package src.main.java;
+        //package jfxtras.styles.jmetro;
 
         import javafx.scene.input.MouseEvent;
         import javafx.scene.control.TableRow;
@@ -41,6 +42,8 @@
 
         import javafx.stage.Screen;
         import javafx.geometry.Rectangle2D;
+        import jfxtras.styles.jmetro.JMetro;
+        import jfxtras.styles.jmetro.Style;
 
 
         public class MainScreen extends Application
@@ -55,11 +58,12 @@
             Scene scene = new Scene((Parent)mainPane, (double)widthOfWindow, (double)heightOfWindow);
             Stage st;
 
-            //JMetro jm = new JMetro(JMetro.Style.LIGHT).applyTheme(mainPane);
+            Style STYLE = Style.LIGHT;
+            JMetro jm = new JMetro(scene, STYLE);
 
             public MainScreen() {
 
-                //PlateHandler.loadMealLists(); //The problem.
+            PlateHandler.loadMealLists(); //The problem.
 
             }
 
@@ -113,7 +117,7 @@
             }
 
 
-            private void profileClick(ActionEvent event) {
+            public void profileClick() {
 
                 clearScreen();
 
@@ -121,94 +125,39 @@
                 ProfileController profController = new ProfileController(prof);
 
                 try{
-                mainPane.setCenter(profController.getLoader().load());
+                  Parent p = FXMLLoader.load(getClass().getResource("/scenes/profile.fxml"));
+                  Scene s = new Scene(p);
+
+                //mainPane.setCenter(profController.getLoader().load());
               }
                 catch(Exception e){
                   System.out.println(e);
+                  System.out.println("noobs");
                 }
 
             }
 
 
             public void drawMainMenu() {
-                clearScreen();
 
-                int numberOfButtons = 4;
+              clearScreen();
 
-                Label name = new Label("Luke's\nMeal\nPlanner.");
+              //MainMenuController menuController = new MainMenuController();
 
-                try{
-
-                URL url = getClass().getResource("/sprites/MealPlannerLogo.png");
-                Image image = new Image(url.toExternalForm());
-                ImageView imageView = new ImageView(image);
-                mainPane.setMargin(imageView,new Insets(25));
-
-                mainPane.setTop(imageView);
-                }
-
-                catch(Exception e){
-                Circle circle = new Circle();
-                circle.setCenterX(100.0f);
-                circle.setCenterY(100.0f);
-                circle.setRadius(50.0f);
-
-                mainPane.setTop(circle);
-                }
+              try{
+              //mainPane.setCenter(menuController.getLoader().load());
+            }
+              catch(Exception e){
+                System.out.println(e);
+              }
 
 
-                name.setPadding(new Insets(20));
-
-
-                Button profile = new Button("Profile");
-                Button foods = new Button("Foods");
-                Button today = new Button("Plate");
-                Button exit = new Button("Exit");
-
-                ArrayList<Button> buttons = new ArrayList<Button>();
-                buttons.add(profile);
-                buttons.add(foods);
-                buttons.add(today);
-
-
-                for ( Button button : buttons) {
-                    //button.setPrefHeight((double)(heightOfWindow / numberOfButtons));
-                    button.setPrefHeight(80);
-
-                    //button.setPrefWidth((double)widthOfWindow);
-                    button.setPrefWidth((double)widthOfWindow - 20);
-
-                    //button.setPadding(new Insets(70.0,0.0,0.0,0.0));
-                }
-
-                GridPane gp = new GridPane();
-                gp.setPadding(new Insets(20));
-
-                //ObservableList<ColumnConstraints> columnConstraints = gp.getColumnConstraints();
-                //columnConstraints.add(new ColumnConstraints(160));
-                //columnConstraints.add(new ColumnConstraints(200));
-
-                gp.add(profile,0,1);
-                gp.add(foods,0,2);
-                gp.add(today,0,3);
-                //gp.add(exit,0,4);
-
-                gp.setHgap(30);
-                gp.setVgap(10);
-
-                //VBox pane = new VBox(profile, foods, today, exit);
-                //pane.setMinSize((double)widthOfWindow, (double)heightOfWindow);
-
-                mainPane.setCenter(gp);
-
-                exit.setPrefHeight(50);
-                exit.setPrefWidth((double)widthOfWindow);
-                mainPane.setBottom(exit);
-
+              /*
                 profile.setOnAction(this::profileClick);
                 //foods.setOnAction(ev -> foodsClick(false));
               //today.setOnAction(ev -> plateMenu());
                 exit.setOnAction(this::exitClick);
+                */
             }
 
             /**
@@ -904,6 +853,7 @@
         mainPane.setTop(null);
         mainPane.setCenter(null);
         mainPane.setBottom(null);
+        System.out.println("test");
     }
 
 }

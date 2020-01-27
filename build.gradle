@@ -25,7 +25,7 @@
 
 apply plugin:'org.javafxports.jfxmobile'
 
- mainClassName = "src.main.java.MainScreen"
+ mainClassName = "src.main.java.MainMenu"
 
  jfxmobile {
 
