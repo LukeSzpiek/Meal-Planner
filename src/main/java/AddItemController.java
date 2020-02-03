@@ -40,42 +40,64 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+
 /**
  * Write a description of JavaFX class Profile here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MealMenu
+public class AddItemController
 {
 
-   @FXML
-   private BorderPane root;
+  @FXML
+    private BorderPane root;
 
-   @FXML
-   private Button backButton;
+    @FXML
+    private Button backButton;
 
-   @FXML
-   private TableView<?> tableView;
+    @FXML
+    private Button createButton;
 
-   @FXML
-   private Button addNewItemButton;
+    @FXML
+    private TextField nameInput;
 
-   @FXML
-   private Button deleteItemButton;
+    @FXML
+    private TextField caloriesInput;
 
-   @FXML
-   private Button addItemToPlateButton;
+    @FXML
+    private TextField carbsInput;
 
-  private String type;
+    @FXML
+    private TextField proteinInput;
 
+    @FXML
+    private TextField fatInput;
 
-public MealMenu(String type){
+    @FXML
+    private TextField saturatesInput;
+
+    @FXML
+    private TextField sugarInput;
+
+    @FXML
+    private TextField fibreInput;
+
+    @FXML
+    private TextField saltInput;
+
+    private String type;
+
+public AddItemController(String type){
 
   this.type = type;
 
   try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/mealMenu.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/addItemMenu.fxml"));
       loader.setController(this);
       MainMenu.mainScene.setRoot((Parent) loader.load());
     }
@@ -88,17 +110,10 @@ public MealMenu(String type){
 @FXML
 void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
-  addNewItemButton.setOnAction(event -> {addItem(event);});
   }
 
-
-public void addItem(ActionEvent event){
-  AddItemController addItemController = new AddItemController(type);
-}
-
 public void goBack(ActionEvent event){
-  FoodsMenu menu = new FoodsMenu();
-  //menu.loadMenu();
+  MealMenu mealMenu = new MealMenu(type);
 }
 
 }
