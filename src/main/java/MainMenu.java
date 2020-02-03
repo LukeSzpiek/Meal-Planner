@@ -38,6 +38,7 @@ import jfxtras.styles.jmetro.Style;
 import javafx.scene.Parent;
 import java.io.IOException;
 import javafx.scene.Node;
+import javafx.application.Platform;
 
 /**
  * Write a description of JavaFX class Profile here.
@@ -68,9 +69,9 @@ public class MainMenu extends Application
    public static Scene mainScene;
 
    private Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-   public double widthOfWindow = visualBounds.getWidth();
-   public double heightOfWindow = visualBounds.getHeight();
-   public Style STYLE = Style.LIGHT;
+   private double widthOfWindow = visualBounds.getWidth();
+   private double heightOfWindow = visualBounds.getHeight();
+   private Style STYLE = Style.LIGHT;
 
    private FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/main.fxml"));
 
@@ -105,7 +106,8 @@ public class MainMenu extends Application
      }
 
    public void exitClick(ActionEvent event) throws IOException {
-     stage.close();
+       Platform.exit();
+       System.exit(0);
      }
 
    public void loadMenu(){
