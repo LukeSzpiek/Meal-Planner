@@ -105,6 +105,10 @@ public class MainMenu extends Application
        FoodsMenu foodsMenu = new FoodsMenu();
      }
 
+    public void plateClick(ActionEvent event) throws IOException {
+      PlateMenuController plateMenu = new PlateMenuController();
+      }
+
    public void exitClick(ActionEvent event) throws IOException {
        Platform.exit();
        System.exit(0);

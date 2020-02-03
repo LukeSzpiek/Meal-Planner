@@ -41,7 +41,7 @@
                         <Font size="28.0" />
                      </font>
                   </Button>
-                  <Button fx:id="plateButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #25cfc6;" text="Plate" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="plateButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#plateClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #25cfc6;" text="Plate" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="28.0" />
                      </font>
