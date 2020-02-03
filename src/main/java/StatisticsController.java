@@ -55,22 +55,22 @@ import javafx.scene.layout.BorderPane;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class PlateMenuController
+public class StatisticsController
 {
 
-@FXML
-private BorderPane root;
+  @FXML
+  private BorderPane root;
 
-@FXML
-private Button backButton;
+  @FXML
+  private Button backButton;
 
-@FXML
-private Button statsButton;
+  @FXML
+  private Label statsLabel;
 
-public PlateMenuController(){
+public StatisticsController(){
 
   try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/plateMenu.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/statisticsMenu.fxml"));
       loader.setController(this);
       MainMenu.mainScene.setRoot((Parent) loader.load());
     }
@@ -83,16 +83,10 @@ public PlateMenuController(){
 @FXML
 void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
-  statsButton.setOnAction(event -> {statsMenu(event);});
   }
 
-public void statsMenu(ActionEvent event){
-  StatisticsController statsController = new StatisticsController();
-}
-
 public void goBack(ActionEvent event){
-  MainMenu menu = new MainMenu();
-  menu.loadMenu();
+  PlateMenuController plateMenuController = new PlateMenuController();
 }
 
 }
