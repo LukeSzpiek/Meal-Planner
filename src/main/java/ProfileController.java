@@ -91,6 +91,7 @@ void initialize() {
   heightLabel.setText(""+profile.getUserHeight());
   ageLabel.setText(""+profile.getUserAge());
   sexComboBox.getItems().addAll("Male","Female");
+  caloriesLabel.setText(""+profile.getUserCalories()+" calories.");
 
   if (profile.getUserSex()==0){
       sexComboBox.setValue("Male");
@@ -121,13 +122,13 @@ public Profile getProfile() {
 
 private void caloriePress(){
 
-caloriesLabel.setText("Calories: "+calculateCalories());
+caloriesLabel.setText(calculateCalories()+" calories.");
 
 }
 
 // Harris-Bennedict (Male): 66 + 13.7*Weight + 5*Height – 6.8*Age
 // Harris-Bennedict (Female): 655 + 9.6*Weight + 1.8*Height – 4.7*Age
-private double calculateCalories(){
+private int calculateCalories(){
 
     double calories = 0;
 
@@ -163,7 +164,7 @@ private double calculateCalories(){
 
     int adjustedCal = (int) (cal*1.2);
 
-    caloriesLabel.setText("Your caloric maintanence is: "+(adjustedCal));
+    //caloriesLabel.setText(""+(adjustedCal)+" calories.");
 
     UserDataManager.changeValue("Sex",sex);
     UserDataManager.changeValue("Height",height);
@@ -173,7 +174,7 @@ private double calculateCalories(){
 
     UserDataManager.writeUserStats();
 
-    return calories;
+    return (int) adjustedCal;
 
 }
 

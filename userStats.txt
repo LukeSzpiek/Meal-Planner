@@ -1,5 +1,0 @@
-Sex 0 
-Height 180 
-Weight 70 
-Age 19 
-Calories 2154 
