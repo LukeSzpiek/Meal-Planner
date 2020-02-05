@@ -46,7 +46,7 @@
                         <Font size="28.0" />
                      </font>
                   </Button>
-                  <Button fx:id="creditsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #dfe629;" text="Credits" GridPane.rowIndex="2">
+                  <Button fx:id="creditsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#creditsClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #dfe629;" text="Credits" GridPane.rowIndex="2">
                      <font>
                         <Font size="28.0" />
                      </font>

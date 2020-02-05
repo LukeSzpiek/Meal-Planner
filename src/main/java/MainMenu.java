@@ -109,6 +109,10 @@ public class MainMenu extends Application
       PlateMenuController plateMenu = new PlateMenuController();
       }
 
+    public void creditsClick(ActionEvent event) throws IOException {
+      CreditsController creditsMenu = new CreditsController();
+      }
+
    public void exitClick(ActionEvent event) throws IOException {
        Platform.exit();
        System.exit(0);
