@@ -39,6 +39,7 @@ import javafx.scene.Node;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.collections.ObservableList;
 
 /**
  * Write a description of JavaFX class Profile here.
@@ -56,7 +57,7 @@ public class MealMenu
    private Button backButton;
 
    @FXML
-   private TableView<?> tableView;
+   private TableView<Meals> tableView;
 
    @FXML
    private Button addNewItemButton;
@@ -87,6 +88,10 @@ public MealMenu(String type){
 
 @FXML
 void initialize() {
+
+  ObservableList<Meals> data = MealLoader.GenerateData(type, true,"meals.csv");
+  tableView = new NutritionTableView(tableView, data).getNutritionTableView();
+
   backButton.setOnAction(event -> {goBack(event);});
   addNewItemButton.setOnAction(event -> {addItem(event);});
   }

@@ -277,7 +277,7 @@ public class MealLoader {
     /**
     * Fetches data to be displayed in a table.
     */
-    public static ObservableList<Meals> GenerateData( String type,  boolean full, String file) {
+    public static ObservableList<Meals> GenerateData(String type,  boolean full, String file) {
 
         ArrayList<Meals> ArrayOfMeals = splitList(type, file);
 
@@ -285,7 +285,9 @@ public class MealLoader {
 
         if (!full) {
             if (type.equals("Breakfast")) {
+              System.out.println("Got here boys");
                 ArrayOfMeals = PlateHandler.getBreakfastMeals();
+                System.out.println("Got here boys");
             }
             else if (type.equals("Lunch")) {
                 ArrayOfMeals = PlateHandler.getLunchMeals();
