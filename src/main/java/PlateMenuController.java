@@ -49,6 +49,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
+import javafx.collections.ObservableList;
+
 /**
  * Write a description of JavaFX class Profile here.
  *
@@ -67,6 +69,21 @@ private Button backButton;
 @FXML
 private Button statsButton;
 
+@FXML
+private TableView<Meals> breakfastTableView;
+
+@FXML
+private TableView<Meals> lunchTableView;
+
+@FXML
+private TableView<Meals> dinnerTableView;
+
+@FXML
+private TableView<Meals> snacksTableView;
+
+@FXML
+private TableView<Meals> boostersTableView;
+
 public PlateMenuController(){
 
   try {
@@ -82,6 +99,22 @@ public PlateMenuController(){
 
 @FXML
 void initialize() {
+
+  ObservableList<Meals> breakfastData = MealLoader.GenerateData("Breakfast", true,"plate.csv");
+  breakfastTableView = new NutritionTableView(breakfastTableView, breakfastData).getNutritionTableView();
+
+  ObservableList<Meals> lunchData = MealLoader.GenerateData("Lunch", true,"plate.csv");
+  lunchTableView = new NutritionTableView(lunchTableView, lunchData).getNutritionTableView();
+
+  ObservableList<Meals> dinnerData = MealLoader.GenerateData("Dinner", true,"plate.csv");
+  dinnerTableView = new NutritionTableView(dinnerTableView, dinnerData).getNutritionTableView();
+
+  ObservableList<Meals> snacksData = MealLoader.GenerateData("Snacks", true,"plate.csv");
+  snacksTableView = new NutritionTableView(snacksTableView, snacksData).getNutritionTableView();
+
+  ObservableList<Meals> boostersData = MealLoader.GenerateData("Boosters", true,"plate.csv");
+  boostersTableView = new NutritionTableView(boostersTableView, boostersData).getNutritionTableView();
+
   backButton.setOnAction(event -> {goBack(event);});
   statsButton.setOnAction(event -> {statsMenu(event);});
   }

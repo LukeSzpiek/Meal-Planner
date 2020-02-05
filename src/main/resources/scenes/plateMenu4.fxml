@@ -37,15 +37,15 @@
                   <VBox prefHeight="881.0" prefWidth="318.0">
                      <children>
                         <Label prefHeight="32.0" prefWidth="105.0" text="Breakfast" />
-                        <TableView fx:id="breakfastTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Lunch" />
-                        <TableView fx:id="lunchTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Dinner" />
-                        <TableView fx:id="dinnerTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Snacks" />
-                        <TableView fx:id="snacksTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Boosters" />
-                        <TableView fx:id="boostersTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView prefHeight="118.0" prefWidth="335.0" />
                      </children>
                   </VBox>
                </content>

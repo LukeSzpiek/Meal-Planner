@@ -105,7 +105,7 @@ void initialize() {
   }
 
 
-  //calculateCaloriesButton.setOnAction(event -> {calculateCalories();});
+  calculateCaloriesButton.setOnAction(event -> {caloriePress();});
   backButton.setOnAction(event -> {goBack(event);});
 
   }
@@ -119,10 +119,14 @@ public Profile getProfile() {
       return profile;
     }
 
-//public FXMLLoader getLoader() {
-  //    return loader;
-  //  }
+private void caloriePress(){
 
+caloriesLabel.setText("Calories: "+calculateCalories());
+
+}
+
+// Harris-Bennedict (Male): 66 + 13.7*Weight + 5*Height – 6.8*Age
+// Harris-Bennedict (Female): 655 + 9.6*Weight + 1.8*Height – 4.7*Age
 private double calculateCalories(){
 
     double calories = 0;
@@ -144,16 +148,14 @@ private double calculateCalories(){
     }
 
     if(weight!=null && height!=null && age!=null && sex!=null){
+        // Male
         if(sex==0){
-            //calories = (int) (66 + (6.3 * weight) + (12.9 * height) - (6.8 * age));
-            System.out.println(weight);
-            System.out.println(height);
-            System.out.println(age);
-            calories = (int) (66 + (6.3 * weight) + (12.9 * height) - (6.8 * age));
+            calories = (int) (66 + (13.7 * weight) + (5 * height) - (6.8 * age));
         }
 
+        // Female
         if(sex==1){
-            calories = (int) (655 + (4.3 * weight) + (4.7 * height) - (4.7 * age));
+            calories = (int) (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age));
         }
     }
 

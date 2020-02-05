@@ -84,18 +84,23 @@ public abstract class UserDataManager
 
         keyIterator = userStats.keySet().iterator();
         valueIterator = userStats.values().iterator();
-
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.txt"))){
+//new File("./src/main/resources/saveFile.sersf")
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("./src/main/resources/raw/userStats.csv"))){
 
             writer.write(""); // Cleans the file.
 
+            writer.write("Sex,Height,Weight,Age,Calories\n");
+
             while (keyIterator.hasNext() && valueIterator.hasNext()){ // While the iterators have items in them, write to the file the items currently selected in the iterators.
-            writer.write(""+keyIterator.next()+" "+valueIterator.next()+" ");
-            writer.newLine();
+            writer.write(""+valueIterator.next()+",");
         }
+
+
+
         }
 
         catch(Exception exception){
+            System.out.println(exception);
             generateFreshStats(); // If an error occurs, then generate a fresh set of stats of the target file.
         }
 
@@ -126,7 +131,7 @@ public abstract class UserDataManager
         Iterator keyIterator = userStats.keySet().iterator();
         Iterator valueIterator = userStats.values().iterator();
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.txt"))){ // We try to create a new writer with the designated file.
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.csv"))){ // We try to create a new writer with the designated file.
 
             writer.write("");
 
