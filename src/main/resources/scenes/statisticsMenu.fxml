@@ -24,7 +24,7 @@
          <center>
             <Label fx:id="statsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="543.0" prefWidth="336.0" text="Age">
                <font>
-                  <Font name="Malgun Gothic" size="25.0" />
+                  <Font name="Malgun Gothic" size="20.0" />
                </font>
             </Label>
          </center>

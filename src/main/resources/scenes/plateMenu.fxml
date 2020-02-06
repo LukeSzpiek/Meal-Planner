@@ -27,12 +27,12 @@
          <bottom>
             <VBox prefHeight="128.0" prefWidth="335.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="Clear Plate">
+                  <Button fx:id="statsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="View Statistics">
                      <font>
                         <Font size="32.0" />
                      </font>
                   </Button>
-                  <Button fx:id="statsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="View Statistics">
+                  <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="Clear Plate">
                      <font>
                         <Font size="32.0" />
                      </font>

@@ -83,6 +83,39 @@ public StatisticsController(){
 @FXML
 void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
+
+  HashMap hm = UserDataManager.loadUserStats();
+
+  Collection test = hm.values();
+
+  Object[] sh = test.toArray();
+
+  int s = (int)sh[0];
+  int h = (int)sh[1];
+  int w = (int)sh[2];
+  int a = (int)sh[3];
+  int c = (int)sh[4];
+
+  double shouldEatCarbs = (0.50*c)/4;
+  double shouldEatProtein = (0.75*w);
+  double shouldEatFat = ((0.275*c)/9);
+  double maximumSugar = ((c*0.1)/4);
+
+  statsLabel.setText("YOUR TOTAL CONSUMPTION:"+
+  "\n"+"Calories: "+PlateHandler.getTotalCalories()+
+  "\n"+"Carbs: "+PlateHandler.getTotalCarbs()+
+  "\n"+"Protein: "+PlateHandler.getTotalProtein()+
+  "\n"+"Fat: "+PlateHandler.getTotalFats()+
+  "\n"+"Saturates: "+PlateHandler.getTotalSaturates()+
+  "\n"+"Sugar: "+PlateHandler.getTotalSugar()+
+  "\n"+"\n"+
+  "YOU SHOULD BE CONSUMING: "+
+  "\n"+"Calories: "+c+" ("+Math.round((PlateHandler.getTotalCalories()/c)*100)+"%"+")"+
+  "\n"+"Carbs: "+(shouldEatCarbs)+" ("+Math.round((PlateHandler.getTotalCarbs()/shouldEatCarbs)*100)+"%"+")"+
+  "\n"+"Protein: "+(shouldEatProtein)+" ("+Math.round((PlateHandler.getTotalProtein()/shouldEatProtein)*100)+"%"+")"+
+  "\n"+"Fat: "+(shouldEatFat)+" ("+Math.round((PlateHandler.getTotalFats()/shouldEatFat)*100)+"%"+")"+
+  "\n"+"Sugar: "+(maximumSugar));
+
   }
 
 public void goBack(ActionEvent event){
