@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.BufferedReader;
 
 
 public class MealLoader {
@@ -32,8 +33,12 @@ public class MealLoader {
         ArrayList<Meals> listings = new ArrayList<Meals>();
         try{
 
-            URL url = MealLoader.class.getResource("/raw/"+fileName);
-            CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
+            //URL url = MealLoader.class.getResource("/raw/"+fileName);
+
+            //new File(url.toURI())
+            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/raw/"+fileName));
+
+            //url.toURI()).getAbsolutePath()
 
             //new FileReader(new File(url.toURI()).getAbsolutePath()));
             String [] line;
@@ -64,7 +69,7 @@ public class MealLoader {
                 System.out.println("Created meal");
                 listings.add(listing);
             }
-        } catch(IOException | URISyntaxException e){
+        } catch(IOException e){
             System.out.println("Failure! Something went wrong");
             e.printStackTrace();
         }
