@@ -61,27 +61,26 @@ public NutritionTableView(TableView<Meals> originalTable, ObservableList<Meals> 
 
     originalTable.setEditable(false);
 
-    TableColumn<Meals, String> nameCol = (TableColumn<Meals, String>)new TableColumn("Name");
+    TableColumn<Meals, String> nameCol = new TableColumn<Meals, String>("Name");
+    nameCol.setCellValueFactory(new PropertyValueFactory<Meals,String>("name"));
 
-    nameCol.setCellValueFactory((Callback)new PropertyValueFactory("name"));
-    TableColumn<Meals, Integer> calCol = (TableColumn<Meals, Integer>)new TableColumn("Cals");
+    TableColumn<Meals, Integer> calCol = new TableColumn<Meals, Integer>("Cals");
+    calCol.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("calories"));
 
-    calCol.setCellValueFactory((Callback)new PropertyValueFactory("calories"));
-    TableColumn<Meals, Integer> carbCol = (TableColumn<Meals, Integer>)new TableColumn("Carbs");
+    TableColumn<Meals, Integer> carbCol = new TableColumn<Meals, Integer>("Carbs");
+    carbCol.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("carbs"));
 
-    carbCol.setCellValueFactory((Callback)new PropertyValueFactory("carbs"));
-    TableColumn<Meals, Integer> proteinCol = (TableColumn<Meals, Integer>)new TableColumn("Prot");
+    TableColumn<Meals, Integer> proteinCol = new TableColumn<Meals, Integer>("Prot");
+    proteinCol.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("protein"));
 
-    proteinCol.setCellValueFactory((Callback)new PropertyValueFactory("protein"));
-    TableColumn<Meals, Integer> fatCol = (TableColumn<Meals, Integer>)new TableColumn("Fat");
+    TableColumn<Meals, Integer> fatCol = new TableColumn<Meals, Integer>("Fat");
+    fatCol.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("fat"));
 
-    fatCol.setCellValueFactory((Callback)new PropertyValueFactory("fat"));
-    TableColumn<Meals, Integer> satFatCol = (TableColumn<Meals, Integer>)new TableColumn("Satu");
+    TableColumn<Meals, Integer> satFatCol = new TableColumn<Meals, Integer>("Satu");
+    satFatCol.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("saturates"));
 
-    satFatCol.setCellValueFactory((Callback)new PropertyValueFactory("saturates"));
-    TableColumn<Meals, Integer> sugars = (TableColumn<Meals, Integer>)new TableColumn("Suga");
-
-    sugars.setCellValueFactory((Callback)new PropertyValueFactory("sugar"));
+    TableColumn<Meals, Integer> sugars = new TableColumn<Meals, Integer>("Suga");
+    sugars.setCellValueFactory(new PropertyValueFactory<Meals,Integer>("sugar"));
 
     originalTable.getColumns().addAll(nameCol, calCol, carbCol, proteinCol, fatCol, satFatCol, sugars);
 

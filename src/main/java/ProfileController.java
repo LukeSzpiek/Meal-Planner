@@ -49,7 +49,7 @@ public class ProfileController
 private TextField ageLabel;
 
 @FXML
-private ComboBox sexComboBox;
+private ComboBox<String> sexComboBox;
 
 @FXML
 private TextField heightLabel;

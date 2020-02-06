@@ -108,11 +108,20 @@ public AddItemController(String type){
   }
 
 @FXML
-void initialize() {
+private void initialize() {
+  createButton.setOnAction(event -> {createItem(event);});
   backButton.setOnAction(event -> {goBack(event);});
   }
 
-public void goBack(ActionEvent event){
+private void createItem(ActionEvent event){
+
+  MealLoader.addMeal(type, nameInput, caloriesInput, carbsInput, proteinInput, fatInput, saturatesInput, sugarInput, fibreInput, saltInput, saltInput, saltInput, saltInput, saltInput, saltInput,
+   saltInput, saltInput, saltInput);
+   
+  goBack(event);
+}
+
+private void goBack(ActionEvent event){
   MealMenu mealMenu = new MealMenu(type);
 }
 

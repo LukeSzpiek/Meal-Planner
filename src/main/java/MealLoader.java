@@ -61,14 +61,14 @@ public class MealLoader {
                 double iron = convertDouble(line[18]);
 
                 Meals listing = new Meals(key, type, name, calories, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron);
-                //System.out.println("Created meal");
+                System.out.println("Created meal");
                 listings.add(listing);
             }
         } catch(IOException | URISyntaxException e){
             System.out.println("Failure! Something went wrong");
             e.printStackTrace();
         }
-        //System.out.println("Success! Number of loaded records: " + listings.size());
+        System.out.println("Success! Number of loaded records: " + listings.size());
         return listings;
     }
 
@@ -160,7 +160,7 @@ public class MealLoader {
         }
     }
 
-    try (PrintWriter writer = new PrintWriter(new File(file))) {
+    try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/"+file))) {
 
       StringBuilder sb = new StringBuilder();
 
@@ -219,6 +219,9 @@ public class MealLoader {
     } catch (FileNotFoundException e) {
       System.out.println(e.getMessage());
     }
+
+    System.out.println("added row");
+
 
   }
 
@@ -313,6 +316,9 @@ public class MealLoader {
     }
 
     private static ArrayList<Meals> splitList(String type, String file) {
+         System.out.println(type);
+         System.out.println(type.length() + "should be 9");
+         System.out.println(file);
          ArrayList<Meals> airbnblistings = (ArrayList<Meals>)MealLoader.load(file);
          ArrayList<Meals> splitList = new ArrayList<Meals>();
         for ( Meals meal : airbnblistings) {

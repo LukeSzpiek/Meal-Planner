@@ -84,7 +84,7 @@ public abstract class UserDataManager
 
         keyIterator = userStats.keySet().iterator();
         valueIterator = userStats.values().iterator();
-//new File("./src/main/resources/saveFile.sersf")
+
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("./src/main/resources/raw/userStats.csv"))){
 
             writer.write(""); // Cleans the file.
