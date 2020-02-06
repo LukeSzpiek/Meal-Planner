@@ -70,6 +70,9 @@ private Button backButton;
 private Button statsButton;
 
 @FXML
+private Button deleteButton;
+
+@FXML
 private TableView<Meals> breakfastTableView;
 
 @FXML
@@ -116,11 +119,26 @@ void initialize() {
   boostersTableView = new NutritionTableView(boostersTableView, boostersData).getNutritionTableView();
 
   backButton.setOnAction(event -> {goBack(event);});
+  deleteButton.setOnAction(event -> {clearPlate(event);});
   statsButton.setOnAction(event -> {statsMenu(event);});
   }
 
 public void statsMenu(ActionEvent event){
   StatisticsController statsController = new StatisticsController();
+}
+
+public void clearPlate(ActionEvent event){
+
+PlateHandler.clearCurrentMeals();
+PlateHandler.clearBreakfastMeals();
+PlateHandler.clearLunchMeals();
+PlateHandler.clearDinnerMeals();
+PlateHandler.clearSnackMeals();
+PlateHandler.clearBoosterMeals();
+MealLoader.createNewPlate();
+
+PlateMenuController plateMenuController = new PlateMenuController();
+
 }
 
 public void goBack(ActionEvent event){

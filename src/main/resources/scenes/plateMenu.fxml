@@ -25,14 +25,23 @@
             </AnchorPane>
          </top>
          <bottom>
-            <Button fx:id="statsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="View Statistics" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Button>
+            <VBox prefHeight="128.0" prefWidth="335.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="Clear Plate">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="statsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="57.0" prefWidth="335.0" text="View Statistics">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </bottom>
          <center>
-            <ScrollPane BorderPane.alignment="CENTER">
+            <ScrollPane prefHeight="516.0" prefWidth="335.0" BorderPane.alignment="CENTER">
                <content>
                   <VBox prefHeight="881.0" prefWidth="318.0">
                      <children>
@@ -41,7 +50,7 @@
                         <Label prefHeight="32.0" prefWidth="105.0" text="Lunch" />
                         <TableView fx:id="lunchTableView" prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Dinner" />
-                        <TableView fx:id="dinnerTableView" prefHeight="118.0" prefWidth="335.0" />
+                        <TableView fx:id="dinnerTableView" prefHeight="118.0" prefWidth="318.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Snacks" />
                         <TableView fx:id="snacksTableView" prefHeight="118.0" prefWidth="335.0" />
                         <Label prefHeight="32.0" prefWidth="105.0" text="Boosters" />

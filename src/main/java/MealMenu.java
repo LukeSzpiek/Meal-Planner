@@ -92,6 +92,23 @@ void initialize() {
   ObservableList<Meals> data = MealLoader.GenerateData(type, true,"meals.csv");
   tableView = new NutritionTableView(tableView, data).getNutritionTableView();
 
+  tableView.setRowFactory(tv -> {
+
+      TableRow<Meals> row = (TableRow<Meals>)new TableRow();
+
+      row.setOnMouseClicked(event -> {
+          if (!row.isEmpty()) {
+              Meals rowData = (Meals)row.getItem();
+              addItemToPlateButton.setOnAction(ev -> addItemToPlate(ev, rowData));
+              deleteItemButton.setOnAction(ev -> {removeItem(ev, rowData);});
+          }
+
+      });
+
+      return row;
+
+  });
+
   backButton.setOnAction(event -> {goBack(event);});
   addNewItemButton.setOnAction(event -> {addItem(event);});
   }
@@ -99,6 +116,17 @@ void initialize() {
 
 public void addItem(ActionEvent event){
   AddItemController addItemController = new AddItemController(type);
+}
+
+public void addItemToPlate(ActionEvent event, Meals rowData){
+  QuantityMenuController quantityMenu = new QuantityMenuController(type, rowData);
+}
+
+public void removeItem(ActionEvent event, Meals rowData){
+
+  MealLoader.addRow(rowData, true, "meals.csv");
+  MealMenu mealMenu = new MealMenu(type);
+
 }
 
 public void goBack(ActionEvent event){
