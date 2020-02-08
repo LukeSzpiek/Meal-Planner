@@ -1,11 +1,12 @@
 package src.main.java;
+
 import java.util.ArrayList;
 
 /**
- * Write a description of class Controller here.
+ * A generic, empty, TableView that can be used throughout the application to display nuturitional information about a meal.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luke.s
+ * @version V2
  */
 public abstract class PlateHandler
 {

@@ -1,10 +1,6 @@
 package src.main.java;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.opencsv.CSVReader;
@@ -17,10 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.io.BufferedReader;
 
-
+/**
+ * Class that deals with the activities of loading, saving and altering meals.csv and plate.csv.
+ *
+ * @author Luke.s
+ * @version V2
+ */
 public class MealLoader {
 
     public MealLoader(){

@@ -2,56 +2,15 @@ package src.main.java;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
-
-import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TableRow;
-import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
-import javafx.scene.control.ScrollPane;
-import javafx.util.Callback;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableColumn;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Label;
 import javafx.collections.ObservableList;
-import java.util.Iterator;
-import javafx.scene.layout.VBox;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import java.util.ArrayList;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.application.Application;
-import javafx.animation.FadeTransition;
-import javafx.scene.paint.*;
-import javafx.util.*;
-import javafx.scene.shape.*;
-import javafx.scene.image.*;
-import java.io.*;
-import java.util.*;
-import java.lang.Object.*;
-import javafx.scene.layout.*;
-import java.lang.Math.*;
-import javafx.fxml.FXMLLoader;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 
-import javafx.stage.Screen;
-import javafx.geometry.Rectangle2D;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
-
-/**
- * Creates a generic, empty, table that is used by all of the meals in the application.
- */
-
+ /**
+  * A generic, empty, TableView that can be used throughout the application to display nuturitional information about a meal.
+  *
+  * @author Luke.s
+  * @version V2
+  */
 public class NutritionTableView
  {
 

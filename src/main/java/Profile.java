@@ -1,30 +1,12 @@
 package src.main.java;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import java.lang.*;
-import javafx.scene.control.TextField;
-import javafx.scene.control.*;
 import java.util.*;
-import java.io.*;
-import java.lang.Object.*;
-import javafx.scene.layout.*;
-import javafx.geometry.*;
-import javafx.scene.image.*;
-import javafx.scene.shape.*;
 
 /**
- * Write a description of JavaFX class Profile here.
+ * Model class for the user profile which saves their details, and can return them.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luke.s
+ * @version V2
  */
 public class Profile
 {

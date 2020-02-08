@@ -10,7 +10,7 @@ import java.net.URL;
  * Enables the application to save user use of the applicaiton.
  *
  * @author Luke
- * @version V1
+ * @version V2
  */
 public abstract class UserDataManager
 {
@@ -19,17 +19,14 @@ public abstract class UserDataManager
     private static int userActions = 0;
 
     /**
-     * Loads user stats from a specified file.
-     * @param The name of a text file that is to be loaded from.
+     * Loads user stats 'userStats.csv'
      */
     public static HashMap<String,Integer> loadUserStats(){
 
         String current = "";
         HashMap<String,Integer> userUseage = new HashMap<>();
         boolean first = true;
-        //System.out.println("Attempting to load");
 
-        //File url = UserDataManager.class.getResource("/stats/userStats.txt").getFile();
         URL url = MealLoader.class.getResource("/raw/userStats.csv");
 
         try{
