@@ -2,48 +2,46 @@ package src.main.java;
 
 import java.util.*;
 import java.io.*;
+import com.opencsv.CSVReader;
+import java.net.URL;
+
 /**
  * Contains methods to load in and write to text files.
  * Enables the application to save user use of the applicaiton.
  *
  * @author Luke
- * @version V1
+ * @version V2
  */
 public abstract class UserDataManager
 {
     // Initially loads in the user's borough use and search uses.
-    private static HashMap userStats = UserDataManager.loadUserStats();
+    private static HashMap<String,Integer> userStats = UserDataManager.loadUserStats();
     private static int userActions = 0;
 
     /**
-     * Loads user stats from a specified file.
-     * @param The name of a text file that is to be loaded from.
+     * Loads user stats 'userStats.csv'
      */
-    public static HashMap loadUserStats(){
+    public static HashMap<String,Integer> loadUserStats(){
 
         String current = "";
-        HashMap userUseage = new HashMap();
+        HashMap<String,Integer> userUseage = new HashMap<>();
         boolean first = true;
-        //System.out.println("Attempting to load");
 
-        try(Scanner reader = new Scanner(new File("userStats.txt"))){ // It scans the file, and if it has something next, then collects the string and adds it to current.
-         while (reader.hasNext()) {
-         if(first){
-             current += reader.next();
-            }
-            else{
-               current += " "+reader.next();
-            }
+        URL url = MealLoader.class.getResource("/raw/userStats.csv");
 
-         first = false;
+        try{
+        CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
 
-         if (reader.hasNextInt()) { // If the next item is an int, then it puts current and the next int into a hashmap. The current stored the whole name of what the number was associated with.
-            userUseage.put(current,reader.nextInt());
-            current = "";
-            first = true;
-         }
+        String [] line;
 
-        }
+        reader.readNext();
+        while ((line = reader.readNext()) != null) {
+            userUseage.put("Sex", Integer.parseInt(line[0]));
+            userUseage.put("Height", Integer.parseInt(line[1]));
+            userUseage.put("Weight", Integer.parseInt(line[2]));
+            userUseage.put("Age", Integer.parseInt(line[3]));
+            userUseage.put("Calories", Integer.parseInt(line[4]));
+          }
         }
 
         catch(Exception e){ // If there is an error, then it generates fresh stats of the target file and loads them in again.
@@ -66,7 +64,7 @@ public abstract class UserDataManager
     /**
      * @return Returns a hash map of the stats that the programmer requests.
      */
-    public static HashMap getUserStats(){
+    public static HashMap<String,Integer> getUserStats(){
         return userStats;
     }
 
@@ -84,17 +82,22 @@ public abstract class UserDataManager
         keyIterator = userStats.keySet().iterator();
         valueIterator = userStats.values().iterator();
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.txt"))){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("./src/main/resources/raw/userStats.csv"))){
 
             writer.write(""); // Cleans the file.
 
+            writer.write("Sex,Height,Weight,Age,Calories\n");
+
             while (keyIterator.hasNext() && valueIterator.hasNext()){ // While the iterators have items in them, write to the file the items currently selected in the iterators.
-            writer.write(""+keyIterator.next()+" "+valueIterator.next()+" ");
-            writer.newLine();
+            writer.write(""+valueIterator.next()+",");
         }
+
+
+
         }
 
         catch(Exception exception){
+            System.out.println(exception);
             generateFreshStats(); // If an error occurs, then generate a fresh set of stats of the target file.
         }
 
@@ -119,13 +122,13 @@ public abstract class UserDataManager
 
         File newFile = new File("userStats.txt");
 
-        HashMap userStats = freshStats(); // Try to generate fresh stats.
+        HashMap<String,Integer> userStats = freshStats(); // Try to generate fresh stats.
 
         Object nextPair = 0;
         Iterator keyIterator = userStats.keySet().iterator();
         Iterator valueIterator = userStats.values().iterator();
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.txt"))){ // We try to create a new writer with the designated file.
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("userStats.csv"))){ // We try to create a new writer with the designated file.
 
             writer.write("");
 
@@ -155,9 +158,9 @@ public abstract class UserDataManager
      * Contains the values for fresh statistics of certain files.
      * @returns Returns a HashMap of new stat pairs.
      */
-    public static HashMap freshStats(){
+    public static HashMap<String,Integer> freshStats(){
 
-        HashMap defaultStats = new HashMap();
+        HashMap<String,Integer> defaultStats = new HashMap<>();
 
         defaultStats.put("Weight",0);
         defaultStats.put("Height",0);

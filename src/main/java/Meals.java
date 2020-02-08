@@ -1,12 +1,11 @@
 package src.main.java;
 
 /**
- * Write a description of class Food here.
+ * Model class of a meal.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luke.s
+ * @version V2
  */
-
 public class Meals {
 
     private int key;

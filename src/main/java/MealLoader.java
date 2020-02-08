@@ -1,10 +1,6 @@
 package src.main.java;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.opencsv.CSVReader;
@@ -16,21 +12,35 @@ import java.util.*;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import java.io.FileReader;
 
-
+/**
+ * Class that deals with the activities of loading, saving and altering meals.csv and plate.csv.
+ *
+ * @author Luke.s
+ * @version V2
+ */
 public class MealLoader {
 
     public MealLoader(){
     }
 
     /**
-     * Return an ArrayList containing the rows in the AirBnB London data set csv file.
+     * Return an ArrayList containing all the meals in the designated file.
+     * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
      */
     public static ArrayList<Meals> load(String fileName) {
         ArrayList<Meals> listings = new ArrayList<Meals>();
         try{
-            URL url = MealLoader.class.getResource("/"+fileName);
-            CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
+
+            //URL url = MealLoader.class.getResource("/raw/"+fileName);
+
+            //new File(url.toURI())
+            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/raw/"+fileName));
+
+            //url.toURI()).getAbsolutePath()
+
+            //new FileReader(new File(url.toURI()).getAbsolutePath()));
             String [] line;
             //skip the first row (column headers)
             reader.readNext();
@@ -56,10 +66,9 @@ public class MealLoader {
                 double iron = convertDouble(line[18]);
 
                 Meals listing = new Meals(key, type, name, calories, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron);
-                //System.out.println("Created meal");
                 listings.add(listing);
             }
-        } catch(IOException | URISyntaxException e){
+        } catch(IOException e){
             System.out.println("Failure! Something went wrong");
             e.printStackTrace();
         }
@@ -79,7 +88,7 @@ public class MealLoader {
                  System.out.println("No name");
                 }
 
-             ArrayList<String> doubleList = new ArrayList();
+             ArrayList<String> doubleList = new ArrayList<String>();
 
              doubleList.add(calorieTextField.getCharacters().toString());
              doubleList.add(carbsTextField.getCharacters().toString());
@@ -155,7 +164,7 @@ public class MealLoader {
         }
     }
 
-    try (PrintWriter writer = new PrintWriter(new File(file))) {
+    try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/"+file))) {
 
       StringBuilder sb = new StringBuilder();
 
@@ -215,11 +224,14 @@ public class MealLoader {
       System.out.println(e.getMessage());
     }
 
+    System.out.println("added row");
+
+
   }
 
     public static void createNewPlate(){
 
-        try (PrintWriter writer = new PrintWriter(new File("plate.csv"))) {
+        try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/plate.csv"))) {
       StringBuilder sb = new StringBuilder();
 
       sb.append("Key"); sb.append(',');
@@ -272,7 +284,7 @@ public class MealLoader {
     /**
     * Fetches data to be displayed in a table.
     */
-    public static ObservableList<Meals> GenerateData( String type,  boolean full, String file) {
+    public static ObservableList<Meals> GenerateData(String type,  boolean full, String file) {
 
         ArrayList<Meals> ArrayOfMeals = splitList(type, file);
 
@@ -280,7 +292,9 @@ public class MealLoader {
 
         if (!full) {
             if (type.equals("Breakfast")) {
+              System.out.println("Got here boys");
                 ArrayOfMeals = PlateHandler.getBreakfastMeals();
+                System.out.println("Got here boys");
             }
             else if (type.equals("Lunch")) {
                 ArrayOfMeals = PlateHandler.getLunchMeals();
@@ -306,9 +320,12 @@ public class MealLoader {
     }
 
     private static ArrayList<Meals> splitList(String type, String file) {
-         ArrayList<Meals> airbnblistings = (ArrayList<Meals>)MealLoader.load(file);
+         System.out.println(type);
+         System.out.println(type.length() + "should be 9");
+         System.out.println(file);
+         ArrayList<Meals> meals = (ArrayList<Meals>)MealLoader.load(file);
          ArrayList<Meals> splitList = new ArrayList<Meals>();
-        for ( Meals meal : airbnblistings) {
+        for (Meals meal : meals) {
             if (meal.getType().equals(type)) {
                 splitList.add(meal);
             }
