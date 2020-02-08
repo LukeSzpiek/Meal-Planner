@@ -26,7 +26,8 @@ public class MealLoader {
     }
 
     /**
-     * Return an ArrayList containing the rows in the AirBnB London data set csv file.
+     * Return an ArrayList containing all the meals in the designated file.
+     * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
      */
     public static ArrayList<Meals> load(String fileName) {
         ArrayList<Meals> listings = new ArrayList<Meals>();
@@ -322,9 +323,9 @@ public class MealLoader {
          System.out.println(type);
          System.out.println(type.length() + "should be 9");
          System.out.println(file);
-         ArrayList<Meals> airbnblistings = (ArrayList<Meals>)MealLoader.load(file);
+         ArrayList<Meals> meals = (ArrayList<Meals>)MealLoader.load(file);
          ArrayList<Meals> splitList = new ArrayList<Meals>();
-        for ( Meals meal : airbnblistings) {
+        for (Meals meal : meals) {
             if (meal.getType().equals(type)) {
                 splitList.add(meal);
             }
