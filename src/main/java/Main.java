@@ -22,10 +22,11 @@ import javafx.application.Platform;
  */
 public class Main extends Application
 {
-   private Stage stage;
-   private Parent root;
+
    public static Scene mainScene; // Global variable making it easy to switch the scene from the rest of the program.
 
+   private Stage stage;
+   private Parent root;
    private Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
    private double widthOfWindow = visualBounds.getWidth();
    private double heightOfWindow = visualBounds.getHeight();
@@ -35,6 +36,8 @@ public class Main extends Application
    public void start(Stage stage) throws IOException {
           this.stage = stage;
 
+          // The 'true' boolean in the MainMenu call states that the constructor is being called from the application start method.
+          //This stops it from overwriting the mainScene in construction and causing a stackOverflow error.
           MainMenu mainMenu = new MainMenu(true);
 
           this.mainScene = new Scene(mainMenu.getLoader().load(), widthOfWindow, heightOfWindow);

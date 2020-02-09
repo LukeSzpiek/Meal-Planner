@@ -77,6 +77,10 @@ private void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
   }
 
+/**
+ * Called when the 'createButton' is pressed. Calls the creation of a new meal.
+ * @param event ActionEvent causing the method call.
+ */
 private void createItem(ActionEvent event){
 
   MealLoader.addMeal(type, nameInput, caloriesInput, carbsInput, proteinInput, fatInput, saturatesInput, sugarInput, fibreInput, saltInput, saltInput, saltInput, saltInput, saltInput, saltInput,
@@ -85,6 +89,10 @@ private void createItem(ActionEvent event){
   goBack(event);
 }
 
+/**
+ * Creates a new mealMenu class. Triggers the program to enter back into the MainMenu.java controller.
+ * @param event ActionEvent causing the method call.
+ */
 private void goBack(ActionEvent event){
   MealMenu mealMenu = new MealMenu(type);
 }

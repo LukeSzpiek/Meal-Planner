@@ -30,49 +30,26 @@ public class MealLoader {
      * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
      */
     public static ArrayList<Meals> load(String fileName) {
+
         ArrayList<Meals> listings = new ArrayList<Meals>();
+
         try{
-
-            //URL url = MealLoader.class.getResource("/raw/"+fileName);
-
-            //new File(url.toURI())
             CSVReader reader = new CSVReader(new FileReader("./src/main/resources/raw/"+fileName));
-
-            //url.toURI()).getAbsolutePath()
-
-            //new FileReader(new File(url.toURI()).getAbsolutePath()));
             String [] line;
-            //skip the first row (column headers)
-            reader.readNext();
-            while ((line = reader.readNext()) != null) {
-                int key = convertInt(line[0]);
-                String type = line[1];
-                String name = line[2];
-                double calories = convertDouble(line[3]);
-                double carbs = convertDouble(line[4]);
-                double protein = convertDouble(line[5]);
-                double fat = convertDouble(line[6]);
-                double saturates = convertDouble(line[7]);
-                double sugar = convertDouble(line[8]);
-                double fibre = convertDouble(line[9]);
-                double salt = convertDouble(line[10]);
-                double b1 = convertDouble(line[11]);
-                double b2 = convertDouble(line[12]);
-                double b3 = convertDouble(line[13]);
-                double b6 = convertDouble(line[14]);
-                double b9 = convertDouble(line[15]);
-                double b12 = convertDouble(line[16]);
-                double d = convertDouble(line[17]);
-                double iron = convertDouble(line[18]);
 
-                Meals listing = new Meals(key, type, name, calories, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron);
+            // Skips the first row, the column headers.
+            reader.readNext();
+
+            while ((line = reader.readNext()) != null) {
+                Meals listing = new Meals(convertInt(line[0]), line[1], line[2], convertDouble(line[3]), convertDouble(line[4]), convertDouble(line[5]), convertDouble(line[6]), convertDouble(line[7]), convertDouble(line[8]), convertDouble(line[9]), convertDouble(line[10]), convertDouble(line[11]), convertDouble(line[12]), convertDouble(line[13]), convertDouble(line[14]), convertDouble(line[15]), convertDouble(line[16]), convertDouble(line[17]), convertDouble(line[18]));
                 listings.add(listing);
             }
-        } catch(IOException e){
-            System.out.println("Failure! Something went wrong");
-            e.printStackTrace();
+
         }
-        //System.out.println("Success! Number of loaded records: " + listings.size());
+
+        catch(IOException e){
+        }
+
         return listings;
     }
 
@@ -145,12 +122,10 @@ public class MealLoader {
 
     ArrayList<Meals> currentData = load(file);
 
-    System.out.println("Done");
-
-    if(deleteRow == false)
+    if(!deleteRow)
     currentData.add(newMeal);
 
-    if(deleteRow == true){
+    else{
 
         Iterator dataIterator = currentData.iterator();
         Meals currentMeal;
@@ -159,7 +134,6 @@ public class MealLoader {
             currentMeal = (Meals) dataIterator.next();
             if(currentMeal.getKey() == newMeal.getKey()){
                 dataIterator.remove();
-                System.out.println("got here");
             }
         }
     }
@@ -168,64 +142,19 @@ public class MealLoader {
 
       StringBuilder sb = new StringBuilder();
 
-      sb.append("Key"); sb.append(',');
-      sb.append("Type"); sb.append(','); sb.append("Name"); sb.append(','); sb.append("Calories"); sb.append(','); sb.append("Carbs"); sb.append(','); sb.append("Protein"); sb.append(',');
-      sb.append("Fat"); sb.append(','); sb.append("Saturates"); sb.append(','); sb.append("Sugar"); sb.append(','); sb.append("Fibre"); sb.append(','); sb.append("Salt"); sb.append(',');
-      sb.append("B1"); sb.append(','); sb.append("B2"); sb.append(','); sb.append("B3"); sb.append(','); sb.append("B6"); sb.append(','); sb.append("B9"); sb.append(','); sb.append("B12");
-      sb.append(','); sb.append("D"); sb.append(','); sb.append("Iron"); sb.append(','); sb.append("\n");
+      sb.append(",Key,Type,Name,Calories,Carbs,Protein,Fat,Saturates,Sugar,Fibre,Salt,B1,B2,B3,B6,B9,B12,D,Iron,\n");
 
       for(Meals meal : currentData){
-
-      sb.append(meal.getKey());
-      sb.append(',');
-      sb.append(meal.getType());
-      sb.append(',');
-      sb.append(meal.getName());
-      sb.append(',');
-      sb.append(meal.getCalories());
-      sb.append(',');
-      sb.append(meal.getCarbs());
-      sb.append(',');
-      sb.append(meal.getProtein());
-      sb.append(',');
-      sb.append(meal.getFat());
-      sb.append(',');
-      sb.append(meal.getSaturates());
-      sb.append(',');
-      sb.append(meal.getSugar());
-      sb.append(',');
-      sb.append(meal.getFibre());
-      sb.append(',');
-      sb.append(meal.getSalt());
-      sb.append(',');
-      sb.append(meal.getB1());
-      sb.append(',');
-      sb.append(meal.getB2());
-      sb.append(',');
-      sb.append(meal.getB3());
-      sb.append(',');
-      sb.append(meal.getB6());
-      sb.append(',');
-      sb.append(meal.getB9());
-      sb.append(',');
-      sb.append(meal.getB12());
-      sb.append(',');
-      sb.append(meal.getD());
-      sb.append(',');
-      sb.append(meal.getIron());
-      sb.append("\n");
-
+      sb.append(""+meal.getKey()+","+meal.getType()+","+meal.getName()+","+meal.getCalories()+","+meal.getCarbs()+","+meal.getProtein()+","+meal.getFat()+","+meal.getSaturates()+","+meal.getSugar()+","+meal.getFibre()+",");
+      sb.append(""+meal.getSalt()+","+meal.getB1()+","+meal.getB2()+","+meal.getB3()+","+meal.getB6()+","+meal.getB9()+","+meal.getB12()+","+meal.getD()+","+meal.getIron()+"\n");
     }
 
     writer.write(sb.toString());
 
-
-    } catch (FileNotFoundException e) {
-      System.out.println(e.getMessage());
     }
 
-    System.out.println("added row");
-
+    catch (FileNotFoundException e) {
+    }
 
   }
 
