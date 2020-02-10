@@ -1,6 +1,6 @@
 # Luke's Meal Planner
 
-JavaFX Android app allowing the user to track and measure their nutritional intake.
+**JavaFX Android app allowing the user to track and measure their nutritional intake.**
 
 ##Requirements
 * Java 8
@@ -10,3 +10,4 @@ JavaFX Android app allowing the user to track and measure their nutritional inta
 * JavaFX
 * JavaFXports
 * Scenebuilder (FXML)
+
