@@ -18,6 +18,9 @@ public class Statistics
 
     private double calories;
 
+    /**
+     * Constructor calculates the quantity of nutritial components that the user SHOULD be consuming, and saves them.
+     */
     public Statistics(){
 
       HashMap hm = UserDataManager.getUserStats();
@@ -33,6 +36,9 @@ public class Statistics
 
     }
 
+    /**
+     * @return String of all nutritial information, including what the user has CURRENTLY eaten on their plate, and what they SHOULD be consuming for their height, weight, sex and age.
+     */
     public String getStatisticsText(){
 
       return ("YOUR TOTAL CONSUMPTION:"+

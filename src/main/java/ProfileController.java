@@ -60,48 +60,46 @@ public ProfileController(Profile prof){
   }
 
 @FXML
-void initialize() {
+void initialize(){
   weightLabel.setText(""+profile.getUserWeight());
   heightLabel.setText(""+profile.getUserHeight());
   ageLabel.setText(""+profile.getUserAge());
   sexComboBox.getItems().addAll("Male","Female");
   caloriesLabel.setText(""+profile.getUserCalories()+" calories.");
 
-  if (profile.getUserSex()==0){
-      sexComboBox.setValue("Male");
-  }
-
-  else if (profile.getUserSex()==1){
-      sexComboBox.setValue("Female");
-  }
-
-  else{
-      sexComboBox.setPromptText("-");
-  }
-
+  // A value of 0 signals 'male', and 1 'female'.
+  if (profile.getUserSex()==0){sexComboBox.setValue("Male");} else if (profile.getUserSex()==1){sexComboBox.setValue("Female");} else{sexComboBox.setPromptText("-");}
 
   calculateCaloriesButton.setOnAction(event -> {caloriePress();});
   backButton.setOnAction(event -> {goBack(event);});
-
   }
 
 public void goBack(ActionEvent event){
   MainMenu menu = new MainMenu(false);
-  //menu.loadMenu();
 }
 
+/**
+ * @return Returns profile model containing user data.
+ */
 public Profile getProfile() {
-      return profile;
-    }
-
-private void caloriePress(){
-
-caloriesLabel.setText(calculateCalories()+" calories.");
-
+  return profile;
 }
 
-// Harris-Bennedict (Male): 66 + 13.7*Weight + 5*Height – 6.8*Age
-// Harris-Bennedict (Female): 655 + 9.6*Weight + 1.8*Height – 4.7*Age
+/**
+ * Triggered when the calculate button is pressed. Triggers calculation and saving of calories, and updates the calorie label.
+ */
+private void caloriePress(){
+  caloriesLabel.setText(calculateCalories()+" calories.");
+}
+
+/**
+ * Calculates and returns maintance calories.
+ * @return The amount of calories the user should be consuming to maintain their body weight.
+ *
+ * Harris-Bennedict (Male): 66 + 13.7*Weight + 5*Height – 6.8*Age
+ * Harris-Bennedict (Female): 655 + 9.6*Weight + 1.8*Height – 4.7*Age
+ *
+ */
 private int calculateCalories(){
 
     double calories = 0;
@@ -114,42 +112,36 @@ private int calculateCalories(){
 
     Integer sex = 0;
 
-    if(sexStr=="Male"){
-        sex = 0;
-    }
-
-    else if(sexStr=="Female"){
-        sex = 1;
-    }
+    if(sexStr=="Male"){sex = 0;} else if(sexStr=="Female"){sex = 1;}
 
     if(weight!=null && height!=null && age!=null && sex!=null){
         // Male
-        if(sex==0){
-            calories = (int) (66 + (13.7 * weight) + (5 * height) - (6.8 * age));
-        }
+        if(sex==0){calories = (int) (66 + (13.7 * weight) + (5 * height) - (6.8 * age));}
 
         // Female
-        if(sex==1){
-            calories = (int) (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age));
-        }
+        if(sex==1){calories = (int) (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age));}
     }
 
     int cal = (int) calories;
-
     int adjustedCal = (int) (cal*1.2);
 
-    //caloriesLabel.setText(""+(adjustedCal)+" calories.");
-
-    UserDataManager.changeValue("Sex",sex);
-    UserDataManager.changeValue("Height",height);
-    UserDataManager.changeValue("Weight",weight);
-    UserDataManager.changeValue("Age",age);
-    UserDataManager.changeValue("Calories",adjustedCal);
-
-    UserDataManager.writeUserStats();
+    updateCalories(sex, height, weight, age, adjustedCal);
 
     return (int) adjustedCal;
 
+}
+
+/**
+ * Updates the value of each profile element and writes them to the profile csv file.
+ */
+private void updateCalories(Integer sex, Integer height, Integer weight, Integer age, int adjustedCal){
+  UserDataManager.changeValue("Sex",sex);
+  UserDataManager.changeValue("Height",height);
+  UserDataManager.changeValue("Weight",weight);
+  UserDataManager.changeValue("Age",age);
+  UserDataManager.changeValue("Calories",adjustedCal);
+
+  UserDataManager.writeUserStats();
 }
 
 }
