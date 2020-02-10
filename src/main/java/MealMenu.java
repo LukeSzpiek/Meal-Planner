@@ -63,38 +63,59 @@ public MealMenu(String type){
 void initialize() {
 
   ObservableList<Meals> data = MealLoader.GenerateData(type, true,"meals.csv");
-  tableView = new NutritionTableView(tableView, data).getNutritionTableView();
+  tableView = new NutritionTableView(tableView, data).getNutritionTableView(); //Creates a new nutrition table and fills it in with data. Then it retrieves it.
 
-  tableView.setRowFactory(tv -> {
-
-      TableRow<Meals> row = (TableRow<Meals>)new TableRow();
-
-      row.setOnMouseClicked(event -> {
-          if (!row.isEmpty()) {
-              Meals rowData = (Meals)row.getItem();
-              addItemToPlateButton.setOnAction(ev -> addItemToPlate(ev, rowData));
-              deleteItemButton.setOnAction(ev -> {removeItem(ev, rowData);});
-          }
-
-      });
-
-      return row;
-
-  });
+  enableTableFunctions();
 
   backButton.setOnAction(event -> {goBack(event);});
   addNewItemButton.setOnAction(event -> {addItem(event);});
   }
 
+/**
+* Sets the behaviour that the tableView has.
+* When a row is clicked, two buttons are then activated that don't make sense without a meal selection.
+* You can either call a selected meal to be added to your plate, or removed as an item.
+*/
+private void enableTableFunctions(){
 
+  tableView.setRowFactory(tv -> {
+
+  TableRow<Meals> row = (TableRow<Meals>)new TableRow();
+
+  // When a row is clicked, then enable the following code.
+  row.setOnMouseClicked(event -> {
+      if (!row.isEmpty()) {
+          Meals rowData = (Meals)row.getItem();
+          addItemToPlateButton.setOnAction(ev -> addItemToPlate(ev, rowData));
+          deleteItemButton.setOnAction(ev -> removeItem(ev, rowData));
+      }
+  });
+  return row;
+  });
+
+}
+
+/**
+* Called when the user presses 'addNewFoodItem', and triggers the program to enter onto the add item page.
+*/
 public void addItem(ActionEvent event){
   AddItemController addItemController = new AddItemController(type);
 }
 
+/**
+* Called when the user presses 'addItemToPlate', and triggers the program to enter onto the quantity page.
+* The user must have selected a meal from the tableview.
+* @param mealToAdd The meal to add as selected from the table.
+*/
 public void addItemToPlate(ActionEvent event, Meals mealToAdd){
   QuantityMenuController quantityMenu = new QuantityMenuController(type, mealToAdd);
 }
 
+/**
+* Called when the user presses 'deleteItem'.
+* The user must have selected a meal from the tableview.
+* @param mealToRemove The meal to remove as selected from the table.
+*/
 public void removeItem(ActionEvent event, Meals mealToRemove){
   MealLoader.deleteRow(mealToRemove, "meals.csv");
   MealMenu mealMenu = new MealMenu(type);
