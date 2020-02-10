@@ -2,10 +2,10 @@
 
 **JavaFX Android app allowing the user to track and measure their nutritional intake.**
 
-##Requirements
+## Requirements
 * Java 8
 
-##Uses
+## Uses
 * Gradle wrapping
 * JavaFX
 * JavaFXports
