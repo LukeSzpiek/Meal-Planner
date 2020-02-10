@@ -176,7 +176,7 @@
   * @param file The file that is to be regenerated.
   */
   public static void generateDefaultFile(String file){
-  saveFile(file,new ArrayList<Meals>())
+  saveFile(file,new ArrayList<Meals>());
   }
 
   /**

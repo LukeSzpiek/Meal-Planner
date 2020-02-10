@@ -53,8 +53,6 @@ public class Meals {
         this.b12 = b12;
         this.d = d;
         this.iron = iron;
-
-
     }
 
     public int getKey() {
@@ -133,25 +131,4 @@ public class Meals {
         return iron;
     }
 
-    @Override
-    public String toString() {
-        return "AirbnbListing{" +
-                "id='" + name + '\'' +
-                ", name='" + calories + '\'' +
-                ", host_id='" + carbs + '\'' +
-                ", host_name='" + protein + '\'' +
-                ", neighbourhood='" + saturates + '\'' +
-                ", latitude=" + sugar +
-                ", longitude=" + fibre +
-                ", room_type='" + salt + '\'' +
-                ", price=" + b1 +
-                ", minimumNights=" + b2 +
-                ", numberOfReviews=" + b3 +
-                ", lastReview='" + b6 + '\'' +
-                ", reviewsPerMonth=" + b9 +
-                ", calculatedHostListingsCount=" + b12 +
-                ", availability365=" + d +
-                ", iron=" + iron +
-                '}';
-    }
 }

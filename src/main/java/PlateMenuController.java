@@ -96,7 +96,7 @@ PlateHandler.clearLunchMeals();
 PlateHandler.clearDinnerMeals();
 PlateHandler.clearSnackMeals();
 PlateHandler.clearBoosterMeals();
-MealLoader.createNewPlate();
+MealLoader.generateDefaultFile("plate.csv");
 
 PlateMenuController plateMenuController = new PlateMenuController();
 
