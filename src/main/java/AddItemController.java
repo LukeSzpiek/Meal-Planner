@@ -83,7 +83,7 @@ private void initialize() {
  */
 private void createItem(ActionEvent event){
 
-  MealLoader.addMeal(type, nameInput, caloriesInput, carbsInput, proteinInput, fatInput, saturatesInput, sugarInput, fibreInput, saltInput, saltInput, saltInput, saltInput, saltInput, saltInput,
+  MealLoader.createNewMeal(type, nameInput, caloriesInput, carbsInput, proteinInput, fatInput, saturatesInput, sugarInput, fibreInput, saltInput, saltInput, saltInput, saltInput, saltInput, saltInput,
    saltInput, saltInput, saltInput);
 
   goBack(event);
