@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.collections.ObservableList;
 
 /**
- * Controller class that deals with the plate menu, where you can select the foods you have eaten today.
+ * Controller class that deals with the plate menu, which displays foods you select you have eaten today.
  *
  * @author Luke.s
  * @version V2
@@ -63,19 +63,20 @@ public PlateMenuController(){
 @FXML
 void initialize() {
 
-  ObservableList<Meals> breakfastData = MealLoader.GenerateData("Breakfast", true,"plate.csv");
+  // Gets an observableList of meals of a certain category, and puts them into a new NutritialTableView.
+  ObservableList<Meals> breakfastData = PlateHandler.getBreakfastMealsObservable();
   breakfastTableView = new NutritionTableView(breakfastTableView, breakfastData).getNutritionTableView();
 
-  ObservableList<Meals> lunchData = MealLoader.GenerateData("Lunch", true,"plate.csv");
+  ObservableList<Meals> lunchData = PlateHandler.getLunchMealsObservable();
   lunchTableView = new NutritionTableView(lunchTableView, lunchData).getNutritionTableView();
 
-  ObservableList<Meals> dinnerData = MealLoader.GenerateData("Dinner", true,"plate.csv");
+  ObservableList<Meals> dinnerData = PlateHandler.getDinnerMealsObservable();
   dinnerTableView = new NutritionTableView(dinnerTableView, dinnerData).getNutritionTableView();
 
-  ObservableList<Meals> snacksData = MealLoader.GenerateData("Snacks", true,"plate.csv");
+  ObservableList<Meals> snacksData = PlateHandler.getSnacksMealsObservable();
   snacksTableView = new NutritionTableView(snacksTableView, snacksData).getNutritionTableView();
 
-  ObservableList<Meals> boostersData = MealLoader.GenerateData("Boosters", true,"plate.csv");
+  ObservableList<Meals> boostersData = PlateHandler.getBoostersMealsObservable();
   boostersTableView = new NutritionTableView(boostersTableView, boostersData).getNutritionTableView();
 
   backButton.setOnAction(event -> {goBack(event);});
@@ -83,13 +84,18 @@ void initialize() {
   statsButton.setOnAction(event -> {statsMenu(event);});
   }
 
+/**
+ * Moves the execution of the code into the stats menu.
+ */
 public void statsMenu(ActionEvent event){
   Statistics statistics = new Statistics();
   StatisticsController statsController = new StatisticsController(statistics);
 }
 
+/**
+ * Clears all meals from the plate and triggers the generation of a new plate.csv file, then refreshes the page by creating a new PlateMenu.
+ */
 public void clearPlate(ActionEvent event){
-
 PlateHandler.clearCurrentMeals();
 PlateHandler.clearBreakfastMeals();
 PlateHandler.clearLunchMeals();
@@ -97,9 +103,7 @@ PlateHandler.clearDinnerMeals();
 PlateHandler.clearSnackMeals();
 PlateHandler.clearBoosterMeals();
 MealLoader.generateDefaultFile("plate.csv");
-
 PlateMenuController plateMenuController = new PlateMenuController();
-
 }
 
 public void goBack(ActionEvent event){
