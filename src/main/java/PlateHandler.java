@@ -160,7 +160,7 @@ public abstract class PlateHandler
      * @param asset A certain asset you want to retrieve from that meal.
      * @return The asset from that meal.
      */
-    public static double returnAsset(Meals meal, String asset){
+    private static double returnAsset(Meals meal, String asset){
       if(asset=="calories") return meal.getCalories();
       else if(asset=="carbs") return meal.getCarbs();
       else if(asset=="protein") return meal.getProtein();

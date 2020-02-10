@@ -87,7 +87,7 @@ void initialize() {
 /**
  * Moves the execution of the code into the stats menu.
  */
-public void statsMenu(ActionEvent event){
+private void statsMenu(ActionEvent event){
   Statistics statistics = new Statistics();
   StatisticsController statsController = new StatisticsController(statistics);
 }
@@ -95,7 +95,7 @@ public void statsMenu(ActionEvent event){
 /**
  * Clears all meals from the plate and triggers the generation of a new plate.csv file, then refreshes the page by creating a new PlateMenu.
  */
-public void clearPlate(ActionEvent event){
+private void clearPlate(ActionEvent event){
 PlateHandler.clearCurrentMeals();
 PlateHandler.clearBreakfastMeals();
 PlateHandler.clearLunchMeals();

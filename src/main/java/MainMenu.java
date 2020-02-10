@@ -57,31 +57,30 @@ public class MainMenu
    @FXML
    void initialize() {}
 
-    public FXMLLoader getLoader(){
-      return loader;
+  public FXMLLoader getLoader(){
+    return loader;
+  }
+
+  public void profileClick(ActionEvent event) throws IOException {
+    Profile prof = new Profile();
+    ProfileController profController = new ProfileController(prof);
+  }
+
+  public void foodsClick(ActionEvent event) throws IOException {
+     MealSelectionController foodsMenu = new MealSelectionController();
+   }
+
+  public void plateClick(ActionEvent event) throws IOException {
+    PlateMenuController plateMenu = new PlateMenuController();
     }
 
+  public void creditsClick(ActionEvent event) throws IOException {
+    CreditsController creditsMenu = new CreditsController();
+    }
 
-     public void profileClick(ActionEvent event) throws IOException {
-        Profile prof = new Profile();
-        ProfileController profController = new ProfileController(prof);
-      }
-
-      public void foodsClick(ActionEvent event) throws IOException {
-         MealSelectionController foodsMenu = new MealSelectionController();
-       }
-
-      public void plateClick(ActionEvent event) throws IOException {
-        PlateMenuController plateMenu = new PlateMenuController();
-        }
-
-      public void creditsClick(ActionEvent event) throws IOException {
-        CreditsController creditsMenu = new CreditsController();
-        }
-
-     public void exitClick(ActionEvent event) throws IOException {
-         Platform.exit();
-         System.exit(0);
-       }
+  public void exitClick(ActionEvent event) throws IOException {
+     Platform.exit();
+     System.exit(0);
+   }
 
 }

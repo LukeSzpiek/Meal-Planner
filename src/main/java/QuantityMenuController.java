@@ -59,7 +59,7 @@ void initialize() {
  * Triggered when the user fills in details of the meal and presses 'add to plate'.
  * Triggers adjustment of quantity.
  */
-public void addToPlate(ActionEvent event){
+private void addToPlate(ActionEvent event){
   AdjustDataQuantity(data, Double.parseDouble(quantityInput.getCharacters().toString()));
   goBack(event);
 }
@@ -71,7 +71,7 @@ public void goBack(ActionEvent event){
 /**
  * Adjusts the nutritional information of the selected meal by scale factor 'quantity'.
  */
-public void AdjustDataQuantity(Meals meals,  double quantity) {
+private void AdjustDataQuantity(Meals meals,  double quantity) {
     System.out.println(quantity);
     if (quantity != 1.0 || quantity != 1 || quantity != 1.00) {
         meals = new Meals(meals.getKey(), meals.getType(), meals.getName(), meals.getCalories() * quantity, meals.getCarbs() * quantity, meals.getProtein() * quantity, meals.getFat() * quantity, meals.getSaturates() * quantity, meals.getSugar() * quantity, meals.getSalt() * quantity, meals.getFibre() * quantity, meals.getB1() * quantity, meals.getB2() * quantity, meals.getB3() * quantity, meals.getB6() * quantity, meals.getB9() * quantity, meals.getB12() * quantity, meals.getD() * quantity, meals.getIron() * quantity);

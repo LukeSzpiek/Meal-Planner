@@ -74,22 +74,22 @@ void initialize(){
   backButton.setOnAction(event -> {goBack(event);});
   }
 
-public void goBack(ActionEvent event){
+/**
+ * Triggered when the calculate button is pressed. Triggers calculation and saving of calories, and updates the calorie label.
+ */
+private void caloriePress(){
+  caloriesLabel.setText(calculateCalories()+" calories.");
+}
+
+private void goBack(ActionEvent event){
   MainMenu menu = new MainMenu(false);
 }
 
 /**
  * @return Returns profile model containing user data.
  */
-public Profile getProfile() {
+private Profile getProfile() {
   return profile;
-}
-
-/**
- * Triggered when the calculate button is pressed. Triggers calculation and saving of calories, and updates the calorie label.
- */
-private void caloriePress(){
-  caloriesLabel.setText(calculateCalories()+" calories.");
 }
 
 /**
