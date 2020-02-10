@@ -14,7 +14,7 @@ import javafx.scene.Parent;
  * @author Luke.s
  * @version V2
  */
-public class FoodsMenu
+public class MealSelectionController
 {
 
   @FXML
@@ -39,7 +39,7 @@ public class FoodsMenu
   private Button boostersButton;
 
 
-public FoodsMenu(){
+public MealSelectionController(){
 
   try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/mealTypeMenu.fxml"));

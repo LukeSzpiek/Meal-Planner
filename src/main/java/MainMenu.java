@@ -68,7 +68,7 @@ public class MainMenu
       }
 
       public void foodsClick(ActionEvent event) throws IOException {
-         FoodsMenu foodsMenu = new FoodsMenu();
+         MealSelectionController foodsMenu = new MealSelectionController();
        }
 
       public void plateClick(ActionEvent event) throws IOException {

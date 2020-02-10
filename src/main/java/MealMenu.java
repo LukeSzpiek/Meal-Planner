@@ -96,15 +96,12 @@ public void addItemToPlate(ActionEvent event, Meals mealToAdd){
 }
 
 public void removeItem(ActionEvent event, Meals mealToRemove){
-
   MealLoader.deleteRow(mealToRemove, "meals.csv");
   MealMenu mealMenu = new MealMenu(type);
-
 }
 
 public void goBack(ActionEvent event){
-  FoodsMenu menu = new FoodsMenu();
-  //menu.loadMenu();
+  MealSelectionController menu = new MealSelectionController();
 }
 
 }

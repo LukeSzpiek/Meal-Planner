@@ -22,11 +22,20 @@
   */
   public class MealLoader {
 
+  private static ArrayList<Meals> loadedMeals = load("meals.csv");
+
   public MealLoader(){
   }
 
   /**
-  * Takes in an array of data about a meal and returns the meal object.
+  * @return The amount of meals in "meals.csv".
+  */
+  public static int getRowCount(){
+  return loadedMeals.size();
+  }
+
+  /**
+  * Takes in an array of data about a meal and returns a new meal object.
   * @param line An array which models a meal record.
   */
   public static Meals createMeal(String[] line){
@@ -35,7 +44,7 @@
   }
 
   /**
-  * Loads the content of a given meal related file, and returns an ArrayList containing all the meals in the designated file.
+  * Loads the content of a given meal related file, and returns an ArrayList of meals containing all the meals in the designated file.
   * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
   */
   public static ArrayList<Meals> load(String fileName) {
@@ -57,8 +66,8 @@
   }
 
   /**
-  * Orchistrates the adding of a meal to meals.csv.
-  * TextField objects probed for their input and split into a record.
+  * Orchistrates the adding of a new meal to meals.csv.
+  * TextField objects are probed for their input and split into a record.
   * addRow then called to append the newly created 'Meals' object.
   * @param TextFields containing meal data inputted by the user.
   */
@@ -100,10 +109,9 @@
   }
 
   /**
-  * Return an ArrayList containing all the meals in the designated file.
-  * @param newMeal
-  * @param deleteRow
-  * @param newMeal
+  * Loads the current data in, adds the new meal to it, and saves it.
+  * @param newMeal The Meals object to be added.
+  * @param file The name of the file that the row should be added to.
   */
   public static void addRow(Meals newMeal, String file) {
 
@@ -114,6 +122,11 @@
 
   }
 
+  /**
+  * Loads the current data in, removes the selected meal from it, and saves it.
+  * @param newMeal The Meals object to be removed.
+  * @param file The name of the file that the row should be deleted from.
+  */
   public static void deleteRow(Meals mealToRemove, String file){
 
   ArrayList<Meals> currentData = load(file);
@@ -130,7 +143,11 @@
   saveFile(file, currentData);
   }
 
-
+  /**
+  * Creates a new version of a designated file with updated data.
+  * @param updatedData
+  * @param file The name of the file the data should be saved to.
+  */
   public static void saveFile(String file, ArrayList<Meals> updatedData) {
 
   try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/"+file))) {
@@ -154,55 +171,34 @@
   }
 
 
-  public static void createNewPlate(){
-
-  try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/plate.csv"))) {
-
-    StringBuilder sb = new StringBuilder();
-    sb.append("Key,Type,Name,Calories,Carbs,Protein,Fat,Saturates,Sugar,Fibre,Salt,B1,B2,B3,B6,B9,B12,D,Iron,\n");
-    writer.write(sb.toString());
-
-  }
-
-  catch (FileNotFoundException e) {
-  }
-
+  /**
+  * Used in the event that a fresh file needs to be generated.
+  * @param file The file that is to be regenerated.
+  */
+  public static void generateDefaultFile(String file){
+  saveFile(file,new ArrayList<Meals>())
   }
 
   /**
-  *
-  * @param doubleString the string to be converted to Double type
-  * @return the Double value of the string, or -1.0 if the string is
-  * either empty or just whitespace
+  * @param doubleString The string to be converted to Double type.
+  * @return the Double value of the string.
   */
   private static Double convertDouble(String doubleString){
-  if(doubleString != null && !doubleString.trim().equals("")){
     return Double.parseDouble(doubleString);
   }
-  return -1.0;
-  }
 
   /**
-  *
-  * @param intString the string to be converted to Integer type
-  * @return the Integer value of the string, or -1 if the string is
-  * either empty or just whitespace
+  * @param intString The string to be converted to Integer type.
+  * @return the Integer value of the string.
   */
   private static Integer convertInt(String intString){
-  if(intString != null && !intString.trim().equals("")){
     return Integer.parseInt(intString);
-  }
-  return -1;
-  }
-
-  public static int getRowCount(){
-  ArrayList<Meals> currentData = load("meals.csv");
-
-  return currentData.size();
   }
 
   /**
-  * Fetches data to be displayed in a table.
+  * Fetches data from a respective category to be displayed in a table.
+  * @param type The food type to be fetched.
+  * @return An ObservableList of "Meals" to be displayed in a TableView.
   */
   public static ObservableList<Meals> GenerateData(String type,  boolean full, String file) {
 
@@ -226,7 +222,6 @@
     }
   }
 
-
   ObservableList<Meals> generatedData = FXCollections.observableArrayList();
   Iterator itr = ArrayOfMeals.iterator();
   while (itr.hasNext()) {
@@ -235,6 +230,13 @@
   return generatedData;
   }
 
+
+  /**
+  * Splits the content of a file up into a respective category, and returns only the meals in that categoy.
+  * @param type The category of meal to be loaded, such as "Breakfast".
+  * @param file The file to split.
+  * @return An arrayList of only meals in the chosen category.
+  */
   private static ArrayList<Meals> splitList(String type, String file) {
   ArrayList<Meals> meals = (ArrayList<Meals>)MealLoader.load(file);
   ArrayList<Meals> splitList = new ArrayList<Meals>();
