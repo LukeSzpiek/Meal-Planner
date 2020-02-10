@@ -91,20 +91,17 @@ public void addItem(ActionEvent event){
   AddItemController addItemController = new AddItemController(type);
 }
 
-public void addItemToPlate(ActionEvent event, Meals rowData){
-  QuantityMenuController quantityMenu = new QuantityMenuController(type, rowData);
+public void addItemToPlate(ActionEvent event, Meals mealToAdd){
+  QuantityMenuController quantityMenu = new QuantityMenuController(type, mealToAdd);
 }
 
-public void removeItem(ActionEvent event, Meals rowData){
-
-  MealLoader.addRow(rowData, true, "meals.csv");
+public void removeItem(ActionEvent event, Meals mealToRemove){
+  MealLoader.deleteRow(mealToRemove, "meals.csv");
   MealMenu mealMenu = new MealMenu(type);
-
 }
 
 public void goBack(ActionEvent event){
-  FoodsMenu menu = new FoodsMenu();
-  //menu.loadMenu();
+  MealSelectionController menu = new MealSelectionController();
 }
 
 }

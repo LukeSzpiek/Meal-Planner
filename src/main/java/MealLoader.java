@@ -1,336 +1,251 @@
-package src.main.java;
+  package src.main.java;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import com.opencsv.CSVReader;
-import java.net.URISyntaxException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.*;
-import javafx.scene.control.TextField;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import java.io.FileReader;
+  import java.io.IOException;
+  import java.util.ArrayList;
+  import java.util.Arrays;
+  import com.opencsv.CSVReader;
+  import java.net.URISyntaxException;
+  import java.io.File;
+  import java.io.FileNotFoundException;
+  import java.io.PrintWriter;
+  import java.util.*;
+  import javafx.scene.control.TextField;
+  import javafx.collections.ObservableList;
+  import javafx.collections.FXCollections;
+  import java.io.FileReader;
 
-/**
- * Class that deals with the activities of loading, saving and altering meals.csv and plate.csv.
- *
- * @author Luke.s
- * @version V2
- */
-public class MealLoader {
+  /**
+  * Class that deals with the activities of loading, saving and altering meals.csv and plate.csv.
+  *
+  * @author Luke.s
+  * @version V2
+  */
+  public class MealLoader {
 
-    public MealLoader(){
+  private static ArrayList<Meals> loadedMeals = load("meals.csv");
+
+  public MealLoader(){
+  }
+
+  /**
+  * @return The amount of meals in "meals.csv".
+  */
+  public static int getRowCount(){
+  return loadedMeals.size();
+  }
+
+  /**
+  * Takes in an array of data about a meal and returns a new meal object.
+  * @param line An array which models a meal record.
+  */
+  public static Meals createMeal(String[] line){
+    Meals meal = new Meals(convertInt(line[0]), line[1], line[2], convertDouble(line[3]), convertDouble(line[4]), convertDouble(line[5]), convertDouble(line[6]), convertDouble(line[7]), convertDouble(line[8]), convertDouble(line[9]), convertDouble(line[10]), convertDouble(line[11]), convertDouble(line[12]), convertDouble(line[13]), convertDouble(line[14]), convertDouble(line[15]), convertDouble(line[16]), convertDouble(line[17]), convertDouble(line[18]));
+    return meal;
+  }
+
+  /**
+  * Loads the content of a given meal related file, and returns an ArrayList of meals containing all the meals in the designated file.
+  * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
+  */
+  public static ArrayList<Meals> load(String fileName) {
+  ArrayList<Meals> loadedMeals = new ArrayList<Meals>();
+
+  try{
+    CSVReader reader = new CSVReader(new FileReader("./src/main/resources/raw/"+fileName));
+    String [] record;
+    // Skips the first row, the column headers.
+    reader.readNext();
+    while ((record = reader.readNext()) != null) {
+        Meals currentMeal = createMeal(record);
+        loadedMeals.add(currentMeal);
+    }
+  }
+  catch(IOException e){
+  }
+  return loadedMeals;
+  }
+
+  /**
+  * Orchistrates the adding of a new meal to meals.csv.
+  * TextField objects are probed for their input and split into a record.
+  * addRow then called to append the newly created 'Meals' object.
+  * @param TextFields containing meal data inputted by the user.
+  */
+  public static void createNewMeal(String type, TextField nameTextField, TextField calorieTextField, TextField carbsTextField, TextField proteinTextField, TextField fatTextField, TextField saturatesTextField,
+  TextField sugarTextField, TextField fibreTextField, TextField saltTextField, TextField b1TextField, TextField b2TextField, TextField b3TextField,
+  TextField b6TextField, TextField b9TextField, TextField b12TextField, TextField dTextField, TextField ironTextField){
+
+  int key = MealLoader.getRowCount() + 1;
+  String name = nameTextField.getCharacters().toString();
+
+  if(name.equals("")){
+     name = ""+key;
     }
 
-    /**
-     * Return an ArrayList containing all the meals in the designated file.
-     * @param fileName contains a String of either 'meals.csv', or 'plate.csv' depending on which is to be loaded.
-     */
-    public static ArrayList<Meals> load(String fileName) {
-        ArrayList<Meals> listings = new ArrayList<Meals>();
-        try{
+  String[] record = new String[19];
 
-            //URL url = MealLoader.class.getResource("/raw/"+fileName);
+  record[0] = ""+key;
+  record[1] = type;
+  record[2] = name;
+  record[3] = (calorieTextField.getCharacters().toString());
+  record[4] = (carbsTextField.getCharacters().toString());
+  record[5] = (proteinTextField.getCharacters().toString());
+  record[6] = (fatTextField.getCharacters().toString());
+  record[7] = (saturatesTextField.getCharacters().toString());
+  record[8] = (sugarTextField.getCharacters().toString());
+  record[9] = (fibreTextField.getCharacters().toString());
+  record[10] = (saltTextField.getCharacters().toString());
+  record[11] = (b1TextField.getCharacters().toString());
+  record[12] = (b2TextField.getCharacters().toString());
+  record[13] = (b3TextField.getCharacters().toString());
+  record[14] = (b6TextField.getCharacters().toString());
+  record[15] = (b9TextField.getCharacters().toString());
+  record[16] = (b12TextField.getCharacters().toString());
+  record[17] = (dTextField.getCharacters().toString());
+  record[18] = (ironTextField.getCharacters().toString());
 
-            //new File(url.toURI())
-            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/raw/"+fileName));
-
-            //url.toURI()).getAbsolutePath()
-
-            //new FileReader(new File(url.toURI()).getAbsolutePath()));
-            String [] line;
-            //skip the first row (column headers)
-            reader.readNext();
-            while ((line = reader.readNext()) != null) {
-                int key = convertInt(line[0]);
-                String type = line[1];
-                String name = line[2];
-                double calories = convertDouble(line[3]);
-                double carbs = convertDouble(line[4]);
-                double protein = convertDouble(line[5]);
-                double fat = convertDouble(line[6]);
-                double saturates = convertDouble(line[7]);
-                double sugar = convertDouble(line[8]);
-                double fibre = convertDouble(line[9]);
-                double salt = convertDouble(line[10]);
-                double b1 = convertDouble(line[11]);
-                double b2 = convertDouble(line[12]);
-                double b3 = convertDouble(line[13]);
-                double b6 = convertDouble(line[14]);
-                double b9 = convertDouble(line[15]);
-                double b12 = convertDouble(line[16]);
-                double d = convertDouble(line[17]);
-                double iron = convertDouble(line[18]);
-
-                Meals listing = new Meals(key, type, name, calories, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron);
-                listings.add(listing);
-            }
-        } catch(IOException e){
-            System.out.println("Failure! Something went wrong");
-            e.printStackTrace();
-        }
-        //System.out.println("Success! Number of loaded records: " + listings.size());
-        return listings;
-    }
-
-    public static void addMeal(String type, TextField nameTextField, TextField calorieTextField, TextField carbsTextField, TextField proteinTextField, TextField fatTextField, TextField saturatesTextField,
-    TextField sugarTextField, TextField fibreTextField, TextField saltTextField, TextField b1TextField, TextField b2TextField, TextField b3TextField,
-    TextField b6TextField, TextField b9TextField, TextField b12TextField, TextField dTextField, TextField ironTextField){
-        int key = MealLoader.getRows() + 1;
-
-             String name = nameTextField.getCharacters().toString();
-
-             if(name.equals("")){
-                 name = ""+key;
-                 System.out.println("No name");
-                }
-
-             ArrayList<String> doubleList = new ArrayList<String>();
-
-             doubleList.add(calorieTextField.getCharacters().toString());
-             doubleList.add(carbsTextField.getCharacters().toString());
-             doubleList.add(proteinTextField.getCharacters().toString());
-             doubleList.add(fatTextField.getCharacters().toString());
-             doubleList.add(saturatesTextField.getCharacters().toString());
-             doubleList.add(sugarTextField.getCharacters().toString());
-             doubleList.add(fibreTextField.getCharacters().toString());
-             doubleList.add(saltTextField.getCharacters().toString());
-             doubleList.add(b1TextField.getCharacters().toString());
-             doubleList.add(b2TextField.getCharacters().toString());
-             doubleList.add(b3TextField.getCharacters().toString());
-             doubleList.add(b6TextField.getCharacters().toString());
-             doubleList.add(b9TextField.getCharacters().toString());
-             doubleList.add(b12TextField.getCharacters().toString());
-             doubleList.add(dTextField.getCharacters().toString());
-             doubleList.add(ironTextField.getCharacters().toString());
-
-             Iterator doubleIt = doubleList.iterator();
-
-             int counter = 0;
-
-             while(doubleIt.hasNext()){
-                 Object next = doubleIt.next();
-
-                 if(next.equals("")){
-                     doubleList.set(counter,"0");
-                    }
-
-                 counter++;
-                }
-
-             double calorie = Double.parseDouble(doubleList.get(0));
-             double carbs = Double.parseDouble(doubleList.get(1));
-             double protein = Double.parseDouble(doubleList.get(2));
-             double fat = Double.parseDouble(doubleList.get(3));
-             double saturates = Double.parseDouble(doubleList.get(4));
-             double sugar = Double.parseDouble(doubleList.get(5));
-             double fibre = Double.parseDouble(doubleList.get(6));
-             double salt = Double.parseDouble(doubleList.get(7));
-             double b1 = Double.parseDouble(doubleList.get(8));
-             double b2 = Double.parseDouble(doubleList.get(9));
-             double b3 = Double.parseDouble(doubleList.get(10));
-             double b6 = Double.parseDouble(doubleList.get(11));
-             double b9 = Double.parseDouble(doubleList.get(12));
-             double b12 = Double.parseDouble(doubleList.get(13));
-             double d = Double.parseDouble(doubleList.get(14));
-             double iron = Double.parseDouble(doubleList.get(15));
-
-            MealLoader.addRow(new Meals(key, type, name, calorie, carbs, protein, fat, saturates, sugar, fibre, salt, b1, b2, b3, b6, b9, b12, d, iron), false, "meals.csv");
-    }
-
-    public static void addRow(Meals newMeal, boolean deleteRow, String file) {
-
-    ArrayList<Meals> currentData = load(file);
-
-    System.out.println("Done");
-
-    if(deleteRow == false)
-    currentData.add(newMeal);
-
-    if(deleteRow == true){
-
-        Iterator dataIterator = currentData.iterator();
-        Meals currentMeal;
-
-        while(dataIterator.hasNext()){
-            currentMeal = (Meals) dataIterator.next();
-            if(currentMeal.getKey() == newMeal.getKey()){
-                dataIterator.remove();
-                System.out.println("got here");
-            }
-        }
-    }
-
-    try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/"+file))) {
-
-      StringBuilder sb = new StringBuilder();
-
-      sb.append("Key"); sb.append(',');
-      sb.append("Type"); sb.append(','); sb.append("Name"); sb.append(','); sb.append("Calories"); sb.append(','); sb.append("Carbs"); sb.append(','); sb.append("Protein"); sb.append(',');
-      sb.append("Fat"); sb.append(','); sb.append("Saturates"); sb.append(','); sb.append("Sugar"); sb.append(','); sb.append("Fibre"); sb.append(','); sb.append("Salt"); sb.append(',');
-      sb.append("B1"); sb.append(','); sb.append("B2"); sb.append(','); sb.append("B3"); sb.append(','); sb.append("B6"); sb.append(','); sb.append("B9"); sb.append(','); sb.append("B12");
-      sb.append(','); sb.append("D"); sb.append(','); sb.append("Iron"); sb.append(','); sb.append("\n");
-
-      for(Meals meal : currentData){
-
-      sb.append(meal.getKey());
-      sb.append(',');
-      sb.append(meal.getType());
-      sb.append(',');
-      sb.append(meal.getName());
-      sb.append(',');
-      sb.append(meal.getCalories());
-      sb.append(',');
-      sb.append(meal.getCarbs());
-      sb.append(',');
-      sb.append(meal.getProtein());
-      sb.append(',');
-      sb.append(meal.getFat());
-      sb.append(',');
-      sb.append(meal.getSaturates());
-      sb.append(',');
-      sb.append(meal.getSugar());
-      sb.append(',');
-      sb.append(meal.getFibre());
-      sb.append(',');
-      sb.append(meal.getSalt());
-      sb.append(',');
-      sb.append(meal.getB1());
-      sb.append(',');
-      sb.append(meal.getB2());
-      sb.append(',');
-      sb.append(meal.getB3());
-      sb.append(',');
-      sb.append(meal.getB6());
-      sb.append(',');
-      sb.append(meal.getB9());
-      sb.append(',');
-      sb.append(meal.getB12());
-      sb.append(',');
-      sb.append(meal.getD());
-      sb.append(',');
-      sb.append(meal.getIron());
-      sb.append("\n");
-
-    }
-
-    writer.write(sb.toString());
-
-
-    } catch (FileNotFoundException e) {
-      System.out.println(e.getMessage());
-    }
-
-    System.out.println("added row");
-
+  addRow(createMeal(record), "meals.csv");
 
   }
 
-    public static void createNewPlate(){
+  /**
+  * Loads the current data in, adds the new meal to it, and saves it.
+  * @param newMeal The Meals object to be added.
+  * @param file The name of the file that the row should be added to.
+  */
+  public static void addRow(Meals newMeal, String file) {
 
-        try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/plate.csv"))) {
-      StringBuilder sb = new StringBuilder();
+  ArrayList<Meals> currentData = load(file);
 
-      sb.append("Key"); sb.append(',');
-      sb.append("Type"); sb.append(','); sb.append("Name"); sb.append(','); sb.append("Calories"); sb.append(','); sb.append("Carbs"); sb.append(','); sb.append("Protein"); sb.append(',');
-      sb.append("Fat"); sb.append(','); sb.append("Saturates"); sb.append(','); sb.append("Sugar"); sb.append(','); sb.append("Fibre"); sb.append(','); sb.append("Salt"); sb.append(',');
-      sb.append("B1"); sb.append(','); sb.append("B2"); sb.append(','); sb.append("B3"); sb.append(','); sb.append("B6"); sb.append(','); sb.append("B9"); sb.append(','); sb.append("B12");
-      sb.append(','); sb.append("D"); sb.append(','); sb.append("Iron"); sb.append(','); sb.append("\n");
+  currentData.add(newMeal);
+  saveFile(file, currentData);
 
-      writer.write(sb.toString());
+  }
+
+  /**
+  * Loads the current data in, removes the selected meal from it, and saves it.
+  * @param newMeal The Meals object to be removed.
+  * @param file The name of the file that the row should be deleted from.
+  */
+  public static void deleteRow(Meals mealToRemove, String file){
+
+  ArrayList<Meals> currentData = load(file);
+  Iterator dataIterator = currentData.iterator();
+  Meals currentMeal;
+
+  while(dataIterator.hasNext()){
+    currentMeal = (Meals) dataIterator.next();
+    if(currentMeal.getKey() == mealToRemove.getKey()){
+        dataIterator.remove();
     }
+  }
 
-    catch (FileNotFoundException e) {
-      System.out.println(e.getMessage());
+  saveFile(file, currentData);
+  }
+
+  /**
+  * Creates a new version of a designated file with updated data.
+  * @param updatedData
+  * @param file The name of the file the data should be saved to.
+  */
+  public static void saveFile(String file, ArrayList<Meals> updatedData) {
+
+  try (PrintWriter writer = new PrintWriter(new File("./src/main/resources/raw/"+file))) {
+
+  StringBuilder sb = new StringBuilder();
+
+  sb.append("Key,Type,Name,Calories,Carbs,Protein,Fat,Saturates,Sugar,Fibre,Salt,B1,B2,B3,B6,B9,B12,D,Iron,\n");
+
+  for(Meals meal : updatedData){
+  sb.append(""+meal.getKey()+","+meal.getType()+","+meal.getName()+","+meal.getCalories()+","+meal.getCarbs()+","+meal.getProtein()+","+meal.getFat()+","+meal.getSaturates()+","+meal.getSugar()+","+meal.getFibre()+",");
+  sb.append(""+meal.getSalt()+","+meal.getB1()+","+meal.getB2()+","+meal.getB3()+","+meal.getB6()+","+meal.getB9()+","+meal.getB12()+","+meal.getD()+","+meal.getIron()+"\n");
+  }
+
+  writer.write(sb.toString());
+
+  }
+
+  catch (FileNotFoundException e) {
+  }
+
+  }
+
+
+  /**
+  * Used in the event that a fresh file needs to be generated.
+  * @param file The file that is to be regenerated.
+  */
+  public static void generateDefaultFile(String file){
+  saveFile(file,new ArrayList<Meals>())
+  }
+
+  /**
+  * @param doubleString The string to be converted to Double type.
+  * @return the Double value of the string.
+  */
+  private static Double convertDouble(String doubleString){
+    return Double.parseDouble(doubleString);
+  }
+
+  /**
+  * @param intString The string to be converted to Integer type.
+  * @return the Integer value of the string.
+  */
+  private static Integer convertInt(String intString){
+    return Integer.parseInt(intString);
+  }
+
+  /**
+  * Fetches data from a respective category to be displayed in a table.
+  * @param type The food type to be fetched.
+  * @return An ObservableList of "Meals" to be displayed in a TableView.
+  */
+  public static ObservableList<Meals> GenerateData(String type,  boolean full, String file) {
+
+  ArrayList<Meals> ArrayOfMeals = splitList(type, file);
+
+  if (!full) {
+    if (type.equals("Breakfast")) {
+        ArrayOfMeals = PlateHandler.getBreakfastMeals();
     }
-
+    else if (type.equals("Lunch")) {
+        ArrayOfMeals = PlateHandler.getLunchMeals();
     }
-
-    /**
-     *
-     * @param doubleString the string to be converted to Double type
-     * @return the Double value of the string, or -1.0 if the string is
-     * either empty or just whitespace
-     */
-    private static Double convertDouble(String doubleString){
-        if(doubleString != null && !doubleString.trim().equals("")){
-            return Double.parseDouble(doubleString);
-        }
-        return -1.0;
+    else if (type.equals("Dinner")) {
+        ArrayOfMeals = PlateHandler.getDinnerMeals();
     }
-
-    /**
-     *
-     * @param intString the string to be converted to Integer type
-     * @return the Integer value of the string, or -1 if the string is
-     * either empty or just whitespace
-     */
-    private static Integer convertInt(String intString){
-        if(intString != null && !intString.trim().equals("")){
-            return Integer.parseInt(intString);
-        }
-        return -1;
+    else if (type.equals("Snacks")) {
+        ArrayOfMeals = PlateHandler.getSnacksMeals();
     }
-
-    public static int getRows(){
-        ArrayList<Meals> currentData = load("meals.csv");
-
-        return currentData.size();
+    else if (type.equals("Boosters")) {
+        ArrayOfMeals = PlateHandler.getBoostersMeals();
     }
+  }
 
-    /**
-    * Fetches data to be displayed in a table.
-    */
-    public static ObservableList<Meals> GenerateData(String type,  boolean full, String file) {
-
-        ArrayList<Meals> ArrayOfMeals = splitList(type, file);
-
-        System.out.println(ArrayOfMeals.size());
-
-        if (!full) {
-            if (type.equals("Breakfast")) {
-              System.out.println("Got here boys");
-                ArrayOfMeals = PlateHandler.getBreakfastMeals();
-                System.out.println("Got here boys");
-            }
-            else if (type.equals("Lunch")) {
-                ArrayOfMeals = PlateHandler.getLunchMeals();
-            }
-            else if (type.equals("Dinner")) {
-                ArrayOfMeals = PlateHandler.getDinnerMeals();
-            }
-            else if (type.equals("Snacks")) {
-                ArrayOfMeals = PlateHandler.getSnacksMeals();
-            }
-            else if (type.equals("Boosters")) {
-                ArrayOfMeals = PlateHandler.getBoostersMeals();
-            }
-        }
+  ObservableList<Meals> generatedData = FXCollections.observableArrayList();
+  Iterator itr = ArrayOfMeals.iterator();
+  while (itr.hasNext()) {
+    generatedData.add((Meals)itr.next());
+  }
+  return generatedData;
+  }
 
 
-         ObservableList<Meals> generatedData = FXCollections.observableArrayList();
-         Iterator itr = ArrayOfMeals.iterator();
-        while (itr.hasNext()) {
-            generatedData.add((Meals)itr.next());
-        }
-        return generatedData;
+  /**
+  * Splits the content of a file up into a respective category, and returns only the meals in that categoy.
+  * @param type The category of meal to be loaded, such as "Breakfast".
+  * @param file The file to split.
+  * @return An arrayList of only meals in the chosen category.
+  */
+  private static ArrayList<Meals> splitList(String type, String file) {
+  ArrayList<Meals> meals = (ArrayList<Meals>)MealLoader.load(file);
+  ArrayList<Meals> splitList = new ArrayList<Meals>();
+  for (Meals meal : meals) {
+    if (meal.getType().equals(type)) {
+        splitList.add(meal);
     }
+  }
+  return splitList;
+  }
 
-    private static ArrayList<Meals> splitList(String type, String file) {
-         System.out.println(type);
-         System.out.println(type.length() + "should be 9");
-         System.out.println(file);
-         ArrayList<Meals> meals = (ArrayList<Meals>)MealLoader.load(file);
-         ArrayList<Meals> splitList = new ArrayList<Meals>();
-        for (Meals meal : meals) {
-            if (meal.getType().equals(type)) {
-                splitList.add(meal);
-            }
-        }
-        return splitList;
-    }
-
-}
+  }

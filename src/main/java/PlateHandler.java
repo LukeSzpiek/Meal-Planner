@@ -10,13 +10,12 @@ import java.util.ArrayList;
  */
 public abstract class PlateHandler
 {
-    // instance variables - replace the example below with your own
-    static private ArrayList<Meals> currentMeals = new ArrayList<Meals>();
-    static private ArrayList<Meals> breakfastMeals = new ArrayList<Meals>();
-    static private ArrayList<Meals> lunchMeals = new ArrayList<Meals>();
-    static private ArrayList<Meals> dinnerMeals = new ArrayList<Meals>();
-    static private ArrayList<Meals> snacksMeals = new ArrayList<Meals>();
-    static private ArrayList<Meals> boostersMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> currentMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> breakfastMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> lunchMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> dinnerMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> snacksMeals = new ArrayList<Meals>();
+    private static ArrayList<Meals> boostersMeals = new ArrayList<Meals>();
 
     /**
      *

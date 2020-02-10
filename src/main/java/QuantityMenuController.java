@@ -87,23 +87,23 @@ private void AddMealToMealList(Meals meal) {
 
     if (type.equals("Breakfast")) {
         PlateHandler.addBreakfast(meal);
-        MealLoader.addRow(meal, false, "plate.csv");
+        MealLoader.addRow(meal, "plate.csv");
     }
     else if (type.equals("Lunch")) {
         PlateHandler.addLunch(meal);
-        MealLoader.addRow(meal, false, "plate.csv");
+        MealLoader.addRow(meal, "plate.csv");
     }
     else if (type.equals("Dinner")) {
         PlateHandler.addDinner(meal);
-        MealLoader.addRow(meal, false, "plate.csv");
+        MealLoader.addRow(meal, "plate.csv");
     }
     if (type.equals("Snacks")) {
         PlateHandler.addSnack(meal);
-        MealLoader.addRow(meal, false, "plate.csv");
+        MealLoader.addRow(meal, "plate.csv");
     }
     if (type.equals("Boosters")) {
         PlateHandler.addBoosters(meal);
-        MealLoader.addRow(meal, false, "plate.csv");
+        MealLoader.addRow(meal, "plate.csv");
     }
 }
 

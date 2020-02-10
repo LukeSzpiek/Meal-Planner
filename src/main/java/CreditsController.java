@@ -36,6 +36,10 @@ void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
   }
 
+/**
+ * Creates a new mealMenu class. Triggers the program to enter back into the MainMenu.java controller.
+ * @param event ActionEvent causing the method call.
+ */
 public void goBack(ActionEvent event){
   MainMenu menu = new MainMenu(false);
 }

@@ -14,7 +14,7 @@ import javafx.scene.Parent;
  * @author Luke.s
  * @version V2
  */
-public class FoodsMenu
+public class MealSelectionController
 {
 
   @FXML
@@ -39,7 +39,7 @@ public class FoodsMenu
   private Button boostersButton;
 
 
-public FoodsMenu(){
+public MealSelectionController(){
 
   try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/mealTypeMenu.fxml"));
@@ -53,20 +53,27 @@ public FoodsMenu(){
 
   }
 
-public void buttonEventHandler(ActionEvent event){
-  Button button = (Button)event.getSource();
-  MealMenu mealMenu = new MealMenu(button.getText());
-}
-
 @FXML
 void initialize() {
   backButton.setOnAction(event -> {goBack(event);});
   }
 
+/**
+ * Moves the execution into the mealMenu controller.
+ * The button pressed is probed and fed to the mealMenu to determine which version of the page is to be displayed.
+ * @param event ActionEvent causing the method call. Used when determining what page to go to next.
+ */
+public void buttonEventHandler(ActionEvent event){
+  Button button = (Button)event.getSource();
+  MealMenu mealMenu = new MealMenu(button.getText());
+}
+
+/**
+ * Creates a new mealMenu class. Triggers the program to enter back into the MainMenu.java controller.
+ * @param event ActionEvent causing the method call.
+ */
 public void goBack(ActionEvent event){
   MainMenu menu = new MainMenu(false);
 }
-
-
 
 }

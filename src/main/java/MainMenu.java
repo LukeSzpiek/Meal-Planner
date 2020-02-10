@@ -37,6 +37,10 @@ public class MainMenu
 
    private FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/main.fxml"));
 
+   /**
+    * Constructor for the main menu.
+    * @param first Boolean to check if it is the first time it is being called. If it is, then don't set the mainScene.
+    */
    public MainMenu(boolean first){
           try {
               loader.setController(this);
@@ -53,30 +57,31 @@ public class MainMenu
    @FXML
    void initialize() {}
 
-  public FXMLLoader getLoader(){
-    return loader;
-  }
-
-   public void profileClick(ActionEvent event) throws IOException {
-      Profile prof = new Profile();
-      ProfileController profController = new ProfileController(prof);
+    public FXMLLoader getLoader(){
+      return loader;
     }
 
-    public void foodsClick(ActionEvent event) throws IOException {
-       FoodsMenu foodsMenu = new FoodsMenu();
-     }
 
-    public void plateClick(ActionEvent event) throws IOException {
-      PlateMenuController plateMenu = new PlateMenuController();
+     public void profileClick(ActionEvent event) throws IOException {
+        Profile prof = new Profile();
+        ProfileController profController = new ProfileController(prof);
       }
 
-    public void creditsClick(ActionEvent event) throws IOException {
-      CreditsController creditsMenu = new CreditsController();
-      }
+      public void foodsClick(ActionEvent event) throws IOException {
+         MealSelectionController foodsMenu = new MealSelectionController();
+       }
 
-   public void exitClick(ActionEvent event) throws IOException {
-       Platform.exit();
-       System.exit(0);
-     }
+      public void plateClick(ActionEvent event) throws IOException {
+        PlateMenuController plateMenu = new PlateMenuController();
+        }
+
+      public void creditsClick(ActionEvent event) throws IOException {
+        CreditsController creditsMenu = new CreditsController();
+        }
+
+     public void exitClick(ActionEvent event) throws IOException {
+         Platform.exit();
+         System.exit(0);
+       }
 
 }
