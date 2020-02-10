@@ -18,6 +18,9 @@ public class Statistics
 
     private double calories;
 
+    /**
+     * Constructor calculates the quantity of nutritial components that the user SHOULD be consuming, and saves them.
+     */
     public Statistics(){
 
       HashMap hm = UserDataManager.getUserStats();
@@ -33,21 +36,24 @@ public class Statistics
 
     }
 
+    /**
+     * @return String of all nutritial information, including what the user has CURRENTLY eaten on their plate, and what they SHOULD be consuming for their height, weight, sex and age.
+     */
     public String getStatisticsText(){
 
       return ("YOUR TOTAL CONSUMPTION:"+
-      "\n"+"Calories: "+PlateHandler.getTotalCalories()+
-      "\n"+"Carbs: "+PlateHandler.getTotalCarbs()+
-      "\n"+"Protein: "+PlateHandler.getTotalProtein()+
-      "\n"+"Fat: "+PlateHandler.getTotalFats()+
-      "\n"+"Saturates: "+PlateHandler.getTotalSaturates()+
-      "\n"+"Sugar: "+PlateHandler.getTotalSugar()+
+      "\n"+"Calories: "+PlateHandler.getTotalAsset("calories")+
+      "\n"+"Carbs: "+PlateHandler.getTotalAsset("carbs")+
+      "\n"+"Protein: "+PlateHandler.getTotalAsset("protein")+
+      "\n"+"Fat: "+PlateHandler.getTotalAsset("fat")+
+      "\n"+"Saturates: "+PlateHandler.getTotalAsset("saturates")+
+      "\n"+"Sugar: "+PlateHandler.getTotalAsset("sugar")+
       "\n"+"\n"+
       "YOU SHOULD BE CONSUMING: "+
-      "\n"+"Calories: "+calories+" ("+Math.round((PlateHandler.getTotalCalories()/calories)*100)+"%"+")"+
-      "\n"+"Carbs: "+(shouldEatCarbs)+" ("+Math.round((PlateHandler.getTotalCarbs()/shouldEatCarbs)*100)+"%"+")"+
-      "\n"+"Protein: "+(shouldEatProtein)+" ("+Math.round((PlateHandler.getTotalProtein()/shouldEatProtein)*100)+"%"+")"+
-      "\n"+"Fat: "+(shouldEatFat)+" ("+Math.round((PlateHandler.getTotalFats()/shouldEatFat)*100)+"%"+")"+
+      "\n"+"Calories: "+calories+" ("+Math.round((PlateHandler.getTotalAsset("calories")/calories)*100)+"%"+")"+
+      "\n"+"Carbs: "+(shouldEatCarbs)+" ("+Math.round((PlateHandler.getTotalAsset("carbs")/shouldEatCarbs)*100)+"%"+")"+
+      "\n"+"Protein: "+(shouldEatProtein)+" ("+Math.round((PlateHandler.getTotalAsset("protein")/shouldEatProtein)*100)+"%"+")"+
+      "\n"+"Fat: "+(shouldEatFat)+" ("+Math.round((PlateHandler.getTotalAsset("fat")/shouldEatFat)*100)+"%"+")"+
       "\n"+"Sugar: "+(maximumSugar));
 
     }

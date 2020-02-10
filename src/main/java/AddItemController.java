@@ -93,7 +93,7 @@ private void createItem(ActionEvent event){
  * Creates a new mealMenu class. Triggers the program to enter back into the MainMenu.java controller.
  * @param event ActionEvent causing the method call.
  */
-private void goBack(ActionEvent event){
+public void goBack(ActionEvent event){
   MealMenu mealMenu = new MealMenu(type);
 }
 

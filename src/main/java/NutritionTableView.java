@@ -16,6 +16,11 @@ public class NutritionTableView
 
 TableView<Meals> table;
 
+/**
+ * Constructor for the class.
+ * @param originalTable The original TableView with no added columns.
+ * @param data Data to insert into this new tableView.
+ */
 public NutritionTableView(TableView<Meals> originalTable, ObservableList<Meals> data){
 
     originalTable.setEditable(false);
@@ -43,9 +48,7 @@ public NutritionTableView(TableView<Meals> originalTable, ObservableList<Meals> 
 
     originalTable.getColumns().addAll(nameCol, calCol, carbCol, proteinCol, fatCol, satFatCol, sugars);
 
-    System.out.println(data.size()+" is the size.");
     originalTable.setItems(data);
-    System.out.println("test");
     this.table = originalTable;
 }
 

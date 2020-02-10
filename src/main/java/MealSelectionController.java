@@ -60,7 +60,7 @@ void initialize() {
 
 /**
  * Moves the execution into the mealMenu controller.
- * The button pressed is probed and fed to the mealMenu to determine which version of the page is to be displayed.
+ * The button's text is probed and fed to the mealMenu to determine which version of the page is to be displayed.
  * @param event ActionEvent causing the method call. Used when determining what page to go to next.
  */
 public void buttonEventHandler(ActionEvent event){

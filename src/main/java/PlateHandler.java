@@ -1,9 +1,14 @@
 package src.main.java;
 
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.*;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 /**
- * A generic, empty, TableView that can be used throughout the application to display nuturitional information about a meal.
+ * Deals with providing information to the PlateMenuController and StatisticsController on information regarding the user's plate (selected food choices).
  *
  * @author Luke.s
  * @version V2
@@ -18,7 +23,7 @@ public abstract class PlateHandler
     private static ArrayList<Meals> boostersMeals = new ArrayList<Meals>();
 
     /**
-     *
+     * @return An arraylist of ALL current meals.
      */
     public static ArrayList<Meals> getCurrentMeals()
     {
@@ -34,11 +39,16 @@ public abstract class PlateHandler
     }
 
     /**
-     *
+     * @return An arraylist of ALL breakfast meals.
      */
     public static ArrayList<Meals> getBreakfastMeals()
     {
         return breakfastMeals;
+    }
+
+    public static ObservableList<Meals> getBreakfastMealsObservable()
+    {
+        return makeObservable(breakfastMeals);
     }
 
     public static void addBreakfast(Meals meal){
@@ -50,11 +60,16 @@ public abstract class PlateHandler
     }
 
     /**
-     *
+     * @return An arraylist of ALL lunch meals.
      */
     public static ArrayList<Meals> getLunchMeals()
     {
         return lunchMeals;
+    }
+
+    public static ObservableList<Meals> getLunchMealsObservable()
+    {
+        return makeObservable(lunchMeals);
     }
 
     public static void addLunch(Meals meal){
@@ -66,11 +81,16 @@ public abstract class PlateHandler
     }
 
     /**
-     *
+     * @return An arraylist of ALL dinner meals.
      */
     public static ArrayList<Meals> getDinnerMeals()
     {
         return dinnerMeals;
+    }
+
+    public static ObservableList<Meals> getDinnerMealsObservable()
+    {
+        return makeObservable(dinnerMeals);
     }
 
     public static void addDinner(Meals meal){
@@ -82,11 +102,16 @@ public abstract class PlateHandler
     }
 
     /**
-     *
+     * @return An arraylist of ALL snacks.
      */
     public static ArrayList<Meals> getSnacksMeals()
     {
         return snacksMeals;
+    }
+
+    public static ObservableList<Meals> getSnacksMealsObservable()
+    {
+        return makeObservable(snacksMeals);
     }
 
     public static void addSnack(Meals meal){
@@ -98,11 +123,16 @@ public abstract class PlateHandler
     }
 
     /**
-     *
+     * @return An arraylist of ALL boosters.
      */
     public static ArrayList<Meals> getBoostersMeals()
     {
         return boostersMeals;
+    }
+
+    public static ObservableList<Meals> getBoostersMealsObservable()
+    {
+        return makeObservable(boostersMeals);
     }
 
     public static void addBoosters(Meals meal){
@@ -114,114 +144,55 @@ public abstract class PlateHandler
     }
 
     /**
-     *
-     * Loads in all of the meals currently on the late, and adds them to their respective ArrayList.
-     *
+     * @param asset The nutritional element you want to retrieve.
+     * @return Double of the total amount of a certain nutritinal element.
      */
-    public static void loadMealLists(){
-
-        ArrayList<Meals> ArrayOfMeals = (ArrayList<Meals>)MealLoader.load("plate.csv");
-
-        for(Meals meal:ArrayOfMeals){
-            if(meal.getType().equals("Breakfast")){
-                    addBreakfast(meal);
-                }
-
-            else if(meal.getType().equals("Lunch")){
-                    addLunch(meal);
-                }
-
-            else if(meal.getType().equals("Dinner")){
-                    addDinner(meal);
-                }
-
-            else if(meal.getType().equals("Snacks")){
-                    addSnack(meal);
-                }
-
-            else if(meal.getType().equals("Boosters")){
-                    addBoosters(meal);
-                }
-
-            addCurrentMeals(meal);
-
-            }
+    public static double getTotalAsset(String asset){
+      double total = 0;
+      for(Meals meal:currentMeals){
+          total += returnAsset(meal, asset);
+      }
+      return total;
     }
 
-    public static double getTotalCalories(){
-
-        double calTotal = 0;
-
-        for(Meals meal:currentMeals){
-            calTotal += meal.getCalories();
-        }
-
-        return calTotal;
-
+    /**
+     * @param meal A meal.
+     * @param asset A certain asset you want to retrieve from that meal.
+     * @return The asset from that meal.
+     */
+    private static double returnAsset(Meals meal, String asset){
+      if(asset=="calories") return meal.getCalories();
+      else if(asset=="carbs") return meal.getCarbs();
+      else if(asset=="protein") return meal.getProtein();
+      else if(asset=="fat") return meal.getFat();
+      else if(asset=="saturates") return meal.getSaturates();
+      else return meal.getSugar();
     }
 
-    public static double getTotalCarbs(){
-
-        double carbTotal = 0;
-
-        for(Meals meal:currentMeals){
-            carbTotal += meal.getCarbs();
-        }
-
-        return carbTotal;
-
+    /**
+     * @return Makes an ordinary ArrayList into an ObservableList and returns it.
+     */
+    private static ObservableList<Meals> makeObservable(ArrayList<Meals> arrayOfMeals){
+      ObservableList<Meals> generatedData = FXCollections.observableArrayList();
+      Iterator itr = arrayOfMeals.iterator();
+      while (itr.hasNext()) {
+        generatedData.add((Meals)itr.next());
+      }
+      return generatedData;
     }
 
-    public static double getTotalProtein(){
-
-        double proteinTotal = 0;
-
-        for(Meals meal:currentMeals){
-            proteinTotal += meal.getProtein();
-        }
-
-        return proteinTotal;
-
-
-    }
-
-    public static double getTotalFats(){
-
-        double fatsTotal = 0;
-
-        for(Meals meal:currentMeals){
-            fatsTotal += meal.getFat();
-        }
-
-        return fatsTotal;
-
-
-    }
-
-    public static double getTotalSaturates(){
-
-        double satTotal = 0;
-
-        for(Meals meal:currentMeals){
-            satTotal += meal.getSaturates();
-        }
-
-        return satTotal;
-
-
-    }
-
-    public static double getTotalSugar(){
-
-        double sugarTotal = 0;
-
-        for(Meals meal:currentMeals){
-            sugarTotal += meal.getSugar();
-        }
-
-        return sugarTotal;
-
-
+    /**
+     * Very similar to 'generateData' in MealLoader.java.
+     * Will be updated in the future so that this method is the only one used for this function.
+     * @param meal A meal type.
+     * @return An observable list of meals in a selected category to be put into a TableView.
+     */
+    public static ObservableList<Meals> getObservableData(String meal){
+      if(meal=="Breakfast") return getBreakfastMealsObservable();
+      else if(meal=="Lunch") return getLunchMealsObservable();
+      else if(meal=="Dinner") return getDinnerMealsObservable();
+      else if(meal=="Snacks") return getSnacksMealsObservable();
+      else return getBoostersMealsObservable();
     }
 
 }

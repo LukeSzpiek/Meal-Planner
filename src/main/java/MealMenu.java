@@ -98,7 +98,7 @@ private void enableTableFunctions(){
 /**
 * Called when the user presses 'addNewFoodItem', and triggers the program to enter onto the add item page.
 */
-public void addItem(ActionEvent event){
+private void addItem(ActionEvent event){
   AddItemController addItemController = new AddItemController(type);
 }
 
@@ -107,7 +107,7 @@ public void addItem(ActionEvent event){
 * The user must have selected a meal from the tableview.
 * @param mealToAdd The meal to add as selected from the table.
 */
-public void addItemToPlate(ActionEvent event, Meals mealToAdd){
+private void addItemToPlate(ActionEvent event, Meals mealToAdd){
   QuantityMenuController quantityMenu = new QuantityMenuController(type, mealToAdd);
 }
 
@@ -116,7 +116,7 @@ public void addItemToPlate(ActionEvent event, Meals mealToAdd){
 * The user must have selected a meal from the tableview.
 * @param mealToRemove The meal to remove as selected from the table.
 */
-public void removeItem(ActionEvent event, Meals mealToRemove){
+private void removeItem(ActionEvent event, Meals mealToRemove){
   MealLoader.deleteRow(mealToRemove, "meals.csv");
   MealMenu mealMenu = new MealMenu(type);
 }
