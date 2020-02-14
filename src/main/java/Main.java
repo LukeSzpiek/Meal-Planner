@@ -38,12 +38,12 @@ public class Main extends Application
 
           // The 'true' boolean in the MainMenu call states that the constructor is being called from the application start method.
           //This stops it from overwriting the mainScene in construction and causing a stackOverflow error.
-          MainMenu mainMenu = new MainMenu(true);
+          Screen1 screen1 = new Screen1(true);
 
-          this.mainScene = new Scene(mainMenu.getLoader().load(), widthOfWindow, heightOfWindow);
+          this.mainScene = new Scene(screen1.getLoader().load(), widthOfWindow, heightOfWindow);
           JMetro jm = new JMetro(mainScene, STYLE);
 
-          this.stage.setTitle("Luke's Meal Planner");
+          this.stage.setTitle("Minimal FX Application");
           this.stage.setScene(mainScene);
           this.stage.show();
        }

@@ -15,33 +15,17 @@ import javafx.scene.Parent;
  * Controller class that deals with the main menu of the program.
  *
  * @author Luke.s
- * @version V2
  */
-public class MainMenu
+public class Screen1
 {
 
-   @FXML
-   private Button profileButton;
-
-   @FXML
-   private Button foodsButton;
-
-   @FXML
-   private Button plateButton;
-
-   @FXML
-   private Button creditsButton;
-
-   @FXML
-   private Button exitButton;
-
-   private FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/main.fxml"));
+   private FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/screen1.fxml"));
 
    /**
     * Constructor for the main menu.
     * @param first Boolean to check if it is the first time it is being called. If it is, then don't set the mainScene.
     */
-   public MainMenu(boolean first){
+   public Screen1(boolean first){
           try {
               loader.setController(this);
 
@@ -61,22 +45,9 @@ public class MainMenu
     return loader;
   }
 
-  public void profileClick(ActionEvent event) throws IOException {
-    Profile prof = new Profile();
-    ProfileController profController = new ProfileController(prof);
+  public void page2Click(ActionEvent event) throws IOException {
+    Screen2 screen2 = new Screen2();
   }
-
-  public void foodsClick(ActionEvent event) throws IOException {
-     MealSelectionController foodsMenu = new MealSelectionController();
-   }
-
-  public void plateClick(ActionEvent event) throws IOException {
-    PlateMenuController plateMenu = new PlateMenuController();
-    }
-
-  public void creditsClick(ActionEvent event) throws IOException {
-    CreditsController creditsMenu = new CreditsController();
-    }
 
   public void exitClick(ActionEvent event) throws IOException {
      Platform.exit();
